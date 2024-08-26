@@ -7,5 +7,5 @@ export const useCurrentUser = () => {
     // const accessToken = session?.accessToken
     // const refreshToken = session?.refreshToken
 
-    return {}
+    return { userInfo }
 }

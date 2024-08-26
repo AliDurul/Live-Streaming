@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import credentials from "next-auth/providers/credentials"
+import facebook from "next-auth/providers/facebook"
 import Google from "next-auth/providers/google"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -8,6 +9,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             clientId: process.env.AUTH_GOOGLE_ID,
             clientSecret: process.env.AUTH_GOOGLE_SECRET,
         }),
+        facebook({
+            clientId: process.env.AUTH_FACEBOOK_ID,
+            clientSecret: process.env.AUTH_FACEBOOK_SECRET,
+        })
         
     ],
     callbacks: {

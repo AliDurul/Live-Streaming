@@ -1,6 +1,6 @@
 
 import { auth } from "@/auth";
-import { apiAuthPrefix, authRoutes, DEFAULT_LOGIN_REDIRECT, publicRoutes } from "./app/utils/routes";
+import { apiAuthPrefix, authRoutes, DEFAULT_LOGIN_REDIRECT, publicRoutes } from "./utils/routes";
 
 //@ts-ignore
 export default auth((req) => {
@@ -23,7 +23,7 @@ export default auth((req) => {
     }
 
     if (!isLoggedIn && !isPublicRoute) {
-        return Response.redirect(new URL("/login", nextUrl));
+        return Response.redirect(new URL("/auth", nextUrl));
     }
 
     return null;
