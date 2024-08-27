@@ -97,7 +97,7 @@ const SignInForm = () => {
           </form>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-7">
           <div className="relative">
             <div aria-hidden="true" className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200" />
@@ -106,7 +106,7 @@ const SignInForm = () => {
               <span className="bg-neutral-700 px-6 ">Or continue with</span>
             </div>
           </div>
-          <div className="mt-6 grid grid-cols-2 gap-4">
+          <div className="mt-7 grid grid-cols-2 gap-4">
             <button
               onClick={() => onClick('google')}
               className="flex w-full items-center justify-center gap-3 rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold  shadow-sm ring-1 ring-inset ring-orange-400 hover:bg-orange-600 focus-visible:ring-transparent">

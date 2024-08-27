@@ -1,8 +1,8 @@
 'use client'
-import movieInfoStore from '@/store/movieInfo'
 import { XMarkIcon, PlayIcon, PlusIcon } from '@heroicons/react/24/solid'
 import React, { useCallback, useEffect, useState } from 'react'
 import { BillBoardPlayBtn } from './BillBoardPlayBtn'
+import useStore from '@/store/useStore'
 
 interface InfoModalProps {
     visible: boolean
@@ -12,7 +12,7 @@ interface InfoModalProps {
 
 export const InfoModal = () => {
     const [isVisible, setIsVisible] = useState(false)
-    const { movieId, closeModal, isOpen } = movieInfoStore()
+    const { movieId, closeModal, isOpen } = useStore()
 
     useEffect(() => {
         setIsVisible(!!isOpen)
