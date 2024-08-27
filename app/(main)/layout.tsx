@@ -19,7 +19,6 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <html lang="en">
             <body className={inter.className}>
                 <SessionProvider session={session} refetchInterval={60 * 60 * 24 * 3}>
-                    <Navbar />
                     {children}
                 </SessionProvider>
             </body>

@@ -1,4 +1,6 @@
 import React from 'react'
+import { BillBoardPlayBtn } from './BillBoardPlayBtn'
+import { BillBoardMoreInfoBtn } from './BillBoardMoreInfoBtn'
 
 const BillBoard = () => {
   return (
@@ -8,8 +10,9 @@ const BillBoard = () => {
         muted
         loop
         poster='/images/poster.png'
+        src='/images/howto.mp4'
         className='object-cover w-full h-full'
-        src='/images/howto.mp4'>
+      >
       </video>
       <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
         <p className='text-white text-xl md:text-3xl h-full w-[50%] lg:text-4xl font-bold drop-shadow-xl'>
@@ -19,7 +22,9 @@ const BillBoard = () => {
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas sunt consequuntur pariatur amet quam voluptatem alias quia aut explicabo dolores?
         </p>
         <div className="flex flex-row items-center mt-3 md:mt-4 gap-3 ">
-          <button className="bg-white text-white bg-opacity-30 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold flex flex-row items-center hover:bg-opacity-20 transition">More detail</button>
+          <BillBoardPlayBtn />
+          <BillBoardMoreInfoBtn />
+       
         </div>
       </div>
     </div>

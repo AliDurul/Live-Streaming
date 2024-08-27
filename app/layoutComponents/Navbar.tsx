@@ -48,11 +48,11 @@ export const Navbar = () => {
     return (
         <Disclosure as="nav" className={`fixed w-full z-40  transition duration-75 ${showbg && 'bg-zinc-900 bg-opacity-90 shadow-md backdrop-blur-md'}`}>
             <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
-                <div className="relative flex h-16 items-center justify-between">
+                <div className="relative flex h-15 items-center justify-between">
                     <div className="flex items-center px-2 lg:px-0">
                         <div className="flex-shrink-0">
                             <Image
-                                placeholder = 'empty'
+                                placeholder='empty'
                                 width={20}
                                 height={20}
                                 alt="Your Company"
@@ -73,23 +73,7 @@ export const Navbar = () => {
                         </div>
                     </div>
                     <div className="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
-                       {/*  <div className="w-full max-w-lg lg:max-w-xs">
-                            <label htmlFor="search" className="sr-only">
-                                Search
-                            </label>
-                            <div className="relative">
-                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                    <MagnifyingGlassIcon aria-hidden="true" className="h-5 w-5 text-gray-400" />
-                                </div>
-                                <input
-                                    id="search"
-                                    name="search"
-                                    type="search"
-                                    placeholder="Search"
-                                    className="block w-full rounded-md border-0 bg-gray-500 py-1.5 pl-10 pr-3 text-gray-300 placeholder:text-gray-400 focus:bg-gray-300 focus:text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
-                                />
-                            </div>
-                        </div> */}
+                        
                     </div>
                     <div className="flex lg:hidden">
                         {/* Mobile menu button */}
@@ -102,14 +86,6 @@ export const Navbar = () => {
                     </div>
                     <div className="hidden lg:ml-4 lg:block">
                         <div className="flex items-center">
-                            {/* <button
-                                type="button"
-                                className="relative flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                            >
-                                <span className="absolute -inset-1.5" />
-                                <span className="sr-only">View notifications</span>
-                                <BellIcon aria-hidden="true" className="h-6 w-6" />
-                            </button> */}
 
                             {/* Profile dropdown */}
                             <Menu as="div" className="relative  flex-shrink-0">
@@ -128,7 +104,7 @@ export const Navbar = () => {
                                 </div>
                                 <MenuItems
                                     transition
-                                    className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-black py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                                    className="absolute right-0 z-50  w-32 origin-top-right rounded-md bg-black py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                                 >
                                     {
                                         profileLinks.map((link, i) => (
@@ -140,7 +116,6 @@ export const Navbar = () => {
                                         ))
                                     }
                                     <SignOutBtn isSmalScreen={false} />
-
                                 </MenuItems>
                             </Menu>
                         </div>
@@ -149,7 +124,7 @@ export const Navbar = () => {
             </div>
 
             <DisclosurePanel className="lg:hidden">
-                <div className="space-y-1 px-2 pb-3 pt-2">
+                <div className="space-y-1 px-2 pb-3 pt-2 bg-black">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                     {
                         links.map((link, i) => (
@@ -157,27 +132,27 @@ export const Navbar = () => {
                                 key={i}
                                 as="a"
                                 href={link.href}
-                                className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+                                className="block rounded px-3 py-2 text-base font-medium text-white"
                             >
                                 {link.label}
                             </DisclosureButton>
                         ))
                     }
                 </div>
-                <div className="border-t border-gray-700 pb-3 pt-4">
+                <div className="border-t border-gray-700 bg-black pb-3 pt-4">
                     <div className="flex items-center px-5">
                         <div className="flex-shrink-0">
                             <Image
                                 height={40}
                                 width={40}
                                 alt=""
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                src={userInfo?.image || '/images/default-avatar.jpg'}
                                 className="h-10 w-10 rounded-full"
                             />
                         </div>
                         <div className="ml-3">
-                            <div className="text-base font-medium text-white">Tom Cook</div>
-                            <div className="text-sm font-medium text-gray-400">tom@example.com</div>
+                            <div className="text-base font-medium text-white">{userInfo?.name}</div>
+                            <div className="text-sm font-medium text-gray-400">{userInfo?.email}</div>
                         </div>
                     </div>
                     <div className="mt-3 space-y-1 px-2">
