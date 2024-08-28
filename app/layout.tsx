@@ -4,6 +4,8 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 
+// import { Toaster } from "react-hot-toast";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,11 +18,13 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const session = await auth();
 
   return (
-    <html lang="en">
+    <html lang="en" >
+
       <body className={inter.className}>
         <SessionProvider session={session} refetchInterval={60 * 60 * 24 * 3}>
           {children}
         </SessionProvider>
+        {/* <Toaster  /> */}
       </body>
     </html>
   );

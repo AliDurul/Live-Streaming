@@ -8,9 +8,6 @@ export default async function page() {
     return (
         <div className='text-white'>
             <InfoModal />
-
-            <Navbar />
-
             <BillBoard />
             <div className="pb-40">
                 <MovieList />

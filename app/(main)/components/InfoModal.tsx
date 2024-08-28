@@ -2,7 +2,7 @@
 import { XMarkIcon, PlayIcon, PlusIcon } from '@heroicons/react/24/solid'
 import React, { useCallback, useEffect, useState } from 'react'
 import { BillBoardPlayBtn } from './BillBoardPlayBtn'
-import useStore from '@/store/useStore'
+import useMovieStore from '@/store/store'
 
 interface InfoModalProps {
     visible: boolean
@@ -12,7 +12,7 @@ interface InfoModalProps {
 
 export const InfoModal = () => {
     const [isVisible, setIsVisible] = useState(false)
-    const { movieId, closeModal, isOpen } = useStore()
+    const { movieId, closeModal, isOpen } = useMovieStore()
 
     useEffect(() => {
         setIsVisible(!!isOpen)
@@ -36,11 +36,11 @@ export const InfoModal = () => {
                     <div className='relative h-96'>
                         <video
                             autoPlay
-                            muted
+                            // controls
                             loop
                             className='w-full brightness-[60%] object-cover h-full'
-                            poster='/images/poster.png'
-                            src='/images/howto.mp4'
+                            poster='/images/logo.jpg'
+                            src='/images/The Icon Zambia.mp4'
                         ></video>
                         <div onClick={handleClose} className='h-10 w-10 rounded-full bg-black text-white absolute top-3 right-3 cursor-pointer bg-opacity-70 flex items-center justify-center '>
                             <XMarkIcon className='h-6 w-6 text-white' />

@@ -3,13 +3,37 @@
 @tailwind utilities;
 
 body {
-  @apply bg-zinc-900 h-full overflow-x-hidden;
+	@apply bg-zinc-900 h-full overflow-x-hidden;
 }
 
 #__next {
-  @apply h-full;
+	@apply h-full;
 }
 
 html {
-  @apply h-full;
+	@apply h-full;
+}
+
+
+
+.shimmer {
+	animation: shimmer 2s infinite linear;
+	background: linear-gradient(to right, #2c2c2c 4%, #333 25%, #2c2c2c 36%);
+	background-size: 1000px 100%;
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: -1000px 0;
+	}
+
+	100% {
+		background-position: 1000px 0;
+	}
+}
+
+.slider-container {
+	.slick-list {
+		@apply overflow-visible;
+	}
 }
