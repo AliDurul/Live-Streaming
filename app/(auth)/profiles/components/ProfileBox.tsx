@@ -8,7 +8,7 @@ const ProfileBox = () => {
     const { userInfo } = useCurrentUser()
     const router = useRouter()
     return (
-        <div onClick={() => { router.push('/') }}>
+        <div onClick={() => { router.push('/stream') }}>
             <div className="group flex-row w-44 mx-auto">
                 <div className="w-44 h-44 rounded-md flex items-center border-2 border-transparent group-hover:border-white overflow-hidden">
                     <Image src='/images/default-blue.png' alt='profile' width={176} height={176} />

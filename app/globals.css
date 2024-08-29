@@ -32,8 +32,41 @@ html {
 	}
 }
 
-.slider-container {
-	.slick-list {
-		@apply overflow-visible;
+.swiper {
+	overflow: visible !important;
+
+	.swiper-button-prev,
+	.swiper-button-next {
+		color: white;
+	}
+
+	.swiper-button-prev {
+		/* left: -2.75rem; */
+		background-color: black;
+		border-radius: 9999px;
+		width: 2.4rem;
+		height: 2.4rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&::after {
+			font-size: 1rem;
+		}
+	}
+
+	.swiper-button-next {
+		/* left: -2.75rem; */
+		background-color: black;
+		border-radius: 9999px;
+		width: 2.4rem;
+		height: 2.4rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&::after {
+			font-size: 1rem;
+		}
 	}
 }

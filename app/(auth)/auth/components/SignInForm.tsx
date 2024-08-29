@@ -3,21 +3,25 @@ import React, { useCallback, useState } from 'react'
 import Input from './Input'
 import { signIn } from 'next-auth/react'
 import { DEFAULT_LOGIN_REDIRECT } from '@/utils/routes'
+import { useSearchParams } from 'next/navigation'
 
 
 const SignInForm = () => {
-
-  const [email, setEmail] = useState('')
+  
+  const searchParams = useSearchParams()
+  const emailAddress = searchParams.get('email')
+  const [email, setEmail] = useState(emailAddress || '')
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [variant, setVariant] = useState('Login')
 
+
+  
   const toggleVariant = useCallback(() => {
     setVariant((cv) => cv === 'Login' ? 'Register' : 'Login')
   }, [])
 
   const onClick = async (provider: 'google' | 'facebook') => {
-    console.log('tikladin');
     signIn(provider, {
       callbackUrl: DEFAULT_LOGIN_REDIRECT
     })
@@ -40,7 +44,7 @@ const SignInForm = () => {
 
       <div className="mt-10 text-white">
         <div>
-          <form action="#" method="POST" className="space-y-6">
+          <form className="space-y-6">
 
             {variant === 'Register' && (
               <Input
