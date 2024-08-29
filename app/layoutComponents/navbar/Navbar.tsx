@@ -27,7 +27,8 @@ export const Navbar = () => {
     const { setContentType, contentType } = useStreamStore()
     const router = useRouter()
     const pathname = usePathname()
-    console.log(pathname);
+    console.log(contentType === 'movie');
+    
 
     useEffect(() => {
         const handleScroll = () => {
@@ -69,15 +70,16 @@ export const Navbar = () => {
 
                                 {
                                     links.map((link, i) => (
-                                        <button onClick={() => setContentType(link.href)} key={i} className={` ${contentType === link.href ? 'text-amber-700 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold text-white cursor-pointer hover:text-amber-600 transition`}>
+                                        <button onClick={() => setContentType(link.href)} key={i}
+                                            className={` ${contentType === link.href ? 'text-amber-700 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold cursor-pointer hover:text-amber-600 transition`}>
                                             {link.label}
                                         </button>
                                     ))
                                 }
-                                <Link href={'/stream/my_list'} className={` ${pathname === '/live' ? 'text-amber-700 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold text-white cursor-pointer hover:text-amber-600 transition`}>
+                                <Link href={'/stream/my_list'} className={` ${pathname === '/live' ? 'text-amber-700 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold  cursor-pointer hover:text-amber-600 transition`}>
                                     My List
                                 </Link>
-                                <button onClick={() => { setContentType('live'); router.push('/stream/live') }} className={` ${pathname === '/live' ? 'text-amber-700 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold text-white cursor-pointer hover:text-amber-600 transition`}>
+                                <button onClick={() => { setContentType('live'); router.push('/stream/live') }} className={` ${pathname === '/live' ? 'text-amber-700 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold  cursor-pointer hover:text-amber-600 transition`}>
                                     Live
                                 </button>
                             </div>
@@ -134,7 +136,7 @@ export const Navbar = () => {
                                         </Menu>
                                     </div>
                                 ) : (
-                                    <Link href="/auth" className="px-3 py-2 text-sm font-semibold text-white cursor-pointer hover:text-gray-300 transition">
+                                    <Link href="/auth" className="px-3 py-2 text-sm font-semibold text-white cursor-pointer hover:text-amber-600 transition">
                                         Sign In
                                     </Link>
                                 )

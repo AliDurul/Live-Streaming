@@ -10,9 +10,16 @@ export default function MainPage() {
             {/* Navbar */}
             <header className='max-w-6xl mx-auto flex items-center justify-between p-4 pb-10'>
                 <Image width={50} height={50} src='/images/logo.png' alt='Netflix Logo' className='w-10 md:w-32' />
-                <Link href={"/auth"} className='text-white bg-orange-500 py-1 px-2 rounded'>
-                    Sign In
-                </Link>
+                <div className="flex gap-4">
+
+                    <Link href={"/stream"} className='text-white py-1 px-2 rounded underline underline-offset-4'>
+                        What is in there ? Take a look !
+                    </Link>
+
+                    <Link href={"/auth"} className='text-white bg-orange-500 py-1 px-3 rounded'>
+                        Sign In
+                    </Link>
+                </div>
             </header>
 
             {/* hero section */}
