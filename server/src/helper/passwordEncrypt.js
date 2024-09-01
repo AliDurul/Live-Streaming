@@ -18,7 +18,6 @@ function hashPassword(password) {
     if (!keyCode) throw new Error('Secret key is not defined');
 
     const handeledPassword = pbkdf2Sync(password, keyCode, loopCount, charCount, encType).toString('hex');
-    console.log('handeledPassword',handeledPassword);
     return handeledPassword;
 }
 
