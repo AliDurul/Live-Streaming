@@ -2,15 +2,16 @@
 /* IMPORTS */
 import express from 'express';
 import "express-async-errors";
-import 'dotenv/config';
-import authentication from './middlewares/authentication.js';
-import errorHandler from './middlewares/errorHandler.js';
-import dbConnection from './config/db.js';
-import mainRoute from './routes/index.js'
-import CustomError from './helper/customError.js';
+import dotenv from 'dotenv';
+import authentication from './server/middlewares/authentication.js';
+import errorHandler from './server/middlewares/errorHandler.js';
+import dbConnection from './server/config/db.js';
+import mainRoute from './server/routes/index.js'
+import CustomError from './server/helper/customError.js';
 
 /* REQUIRED */
 const app = express();
+dotenv.config();
 const HOST = process.env.HOST;
 const PORT = process.env.PORT;
 
