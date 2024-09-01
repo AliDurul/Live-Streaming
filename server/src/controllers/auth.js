@@ -12,7 +12,7 @@ export const login = async (req, res) => {
 
     if (!email || !password) throw new CustomError('Please fill in all fields.', 400);
 
-    const user = await User.finOne({ email });
+    const user = await User.findOne({ email });
 
     if (!user) throw new CustomError('User does not exist.', 404);
 

@@ -14,10 +14,9 @@ export default async function (req, res, next) {
     if (tokenKey) {
 
         jwt.verify(tokenKey[1], process.env.ACCESS_KEY, (err, userData) => {
-            if (err) return res.status(403).json({ message: 'Token is not valid' })
+            if (err) return res.status(403).json({ error: true, message: 'Token is not valid' })
             req.user = userData
         })
     }
-
     next()
 }
