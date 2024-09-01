@@ -3,11 +3,11 @@
 import express from 'express';
 import "express-async-errors";
 import 'dotenv/config';
-import authentication from './src/middlewares/authentication.js';
-import errorHandler from './src/middlewares/errorHandler.js';
-import dbConnection from './src/config/db.js';
-import mainRoute from './src/routes/index.js'
-import CustomError from './src/helper/customError.js';
+import authentication from './middlewares/authentication.js';
+import errorHandler from './middlewares/errorHandler.js';
+import dbConnection from './config/db.js';
+import mainRoute from './routes/index.js'
+import CustomError from './helper/customError.js';
 
 /* REQUIRED */
 const app = express();
