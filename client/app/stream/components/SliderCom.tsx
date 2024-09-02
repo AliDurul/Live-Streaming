@@ -44,8 +44,8 @@ export default function SliderCom({ category }: { category: any }) {
         slidesPerView={1}
         keyboard={{ enabled: true }}
         navigation
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
+        // onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log('slide change')}
         breakpoints={{
           640: {
             slidesPerView: 2,

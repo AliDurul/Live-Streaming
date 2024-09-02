@@ -16,6 +16,9 @@ export const login = async (req, res) => {
 
     if (!user) throw new CustomError('User does not exist.', 404);
 
+    console.log(user);
+
+    console.log(hashPassword(password));
     if (user && user.password !== hashPassword(password)) throw new CustomError('Invalid credentials.', 400);
 
     res.status(200).send(generateToken(user));

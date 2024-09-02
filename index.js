@@ -8,6 +8,7 @@ import errorHandler from './server/middlewares/errorHandler.js';
 import dbConnection from './server/config/db.js';
 import mainRoute from './server/routes/index.js'
 import CustomError from './server/helper/customError.js';
+import cors from 'cors';
 
 /* REQUIRED */
 const app = express();
@@ -22,6 +23,7 @@ dbConnection();
 /* MIDDLEWARES */
 app.use(express.json());
 app.use(authentication);
+app.use(cors());
 
 /* ROUTES */
 app.get('/', (req, res) => {

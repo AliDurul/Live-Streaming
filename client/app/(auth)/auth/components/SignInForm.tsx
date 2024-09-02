@@ -3,20 +3,23 @@ import React, { useCallback, useState } from 'react'
 import Input from './Input'
 import { signIn } from 'next-auth/react'
 import { DEFAULT_LOGIN_REDIRECT } from '@/utils/routes'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { login } from '../authActions'
+import { toast } from 'react-toastify'
 
 
 const SignInForm = () => {
-  
+
   const searchParams = useSearchParams()
   const emailAddress = searchParams.get('email')
   const [email, setEmail] = useState(emailAddress || '')
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [variant, setVariant] = useState('Login')
+  const router = useRouter()
 
 
-  
+
   const toggleVariant = useCallback(() => {
     setVariant((cv) => cv === 'Login' ? 'Register' : 'Login')
   }, [])
@@ -25,6 +28,26 @@ const SignInForm = () => {
     signIn(provider, {
       callbackUrl: DEFAULT_LOGIN_REDIRECT
     })
+  }
+
+  const handlelogin = async (e: any) => {
+    e.preventDefault()
+
+    login({ email, password })
+      .then((data) => {
+        if (data?.error) {
+          toast.error(data?.error);
+        } else {
+          toast.success('Login successful')
+          router.push('/stream')
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message, {
+          position: "top-center"
+        });
+      })
+
   }
 
   return (
@@ -44,7 +67,7 @@ const SignInForm = () => {
 
       <div className="mt-10 text-white">
         <div>
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handlelogin}>
 
             {variant === 'Register' && (
               <Input

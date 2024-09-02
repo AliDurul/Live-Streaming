@@ -27,7 +27,6 @@ export const Navbar = () => {
     const { setContentType, contentType } = useStreamStore()
     const router = useRouter()
     const pathname = usePathname()
-    console.log(contentType === 'movie');
     
 
     useEffect(() => {
