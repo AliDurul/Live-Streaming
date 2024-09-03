@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import HomeScreenForm from './(auth)/auth/components/HomeScreenForm'
 
-export default function MainPage() {
+export default async function MainPage() {
 
     return (
         <div className='hero-bg relative'>

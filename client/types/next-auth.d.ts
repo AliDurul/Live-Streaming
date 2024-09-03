@@ -4,9 +4,9 @@ import NextAuth from "next-auth";
 export interface userInfo {
 
     _id: string,
-    username: string,
+    name: string,
     email: string,
-    image: string,
+    picture: string,
     searchHistory: any[],
     __v: number,
     iat: number,

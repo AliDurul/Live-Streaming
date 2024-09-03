@@ -1,4 +1,4 @@
-import NextAuth, { Account, User } from "next-auth"
+import NextAuth, { Account, Profile, User } from "next-auth"
 import credentials from "next-auth/providers/credentials"
 import facebook from "next-auth/providers/facebook"
 import Google from "next-auth/providers/google"
@@ -43,40 +43,43 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         })
 
     ],
-    events: {
-        async linkAccount({ user, account, profile }) {
-            // Handle linking of social accounts
-            const { email, name: username } = profile;
-            console.log(profile);
-            console.log(user);
-            console.log(account);
-  
-        }
-    },
     callbacks: {
 
         async signIn({ user, account, profile, email, credentials }) {
             // checking if user is valid like email verification or balance or isactive
-            // console.log('signIn user==>', user);
+            if (!user) return false
 
-            // console.log('SignIn profile==>', profile);
+            try {
+                if (account?.provider !== 'credentials') {
+                    const { sub, email, name, picture } = profile as Profile
 
+                    const res = await fetch(`${API_BASE_URL}/auth/register`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, sub, name, picture }),
+                    })
+
+                    if (!res.ok) throw new Error('Failed to register user')
+
+                    const userTokens = await res.json()
+
+                    user.access = userTokens.access
+                    user.refresh = userTokens.refresh
+                }
+            } catch (error) {
+                console.error("Error signing in==>", error);
+                return false
+            }
 
             return true
         },
         async jwt({ token, user, account, }: { token: JWT, user: User, account: Account | null }) {
 
-            if (account?.provider !== 'credentials') {
-                // console.log('line 69 jwt token==>', token);
-                // console.log('jwt user==>', user);
-                return token
-            }
-
             if (user) {
-                // console.log('line 74 jwt user==>', user);
                 token.access = user?.access
                 token.refresh = user?.refresh
                 token.userInfo = jwtDecode<userInfo>(user?.access);
+                console.log('line 82 jwt token==>', token);
                 return token
             } else if (Date.now() < token.userInfo.exp * 1000) {
                 return token
@@ -96,9 +99,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     return { ...token, error: "RefreshAccessTokenError" as const };
                 }
             }
-
-
-
         },
         async session({ session, token }) {
             if (token.access) {

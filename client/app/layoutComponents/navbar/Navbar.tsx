@@ -9,6 +9,7 @@ import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { SignOutBtn } from './SignOutBtn';
 import useStreamStore from '@/stores/store';
 import { usePathname, useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 const links = [
     { label: 'Movies', href: 'movie' },
@@ -22,7 +23,8 @@ const profileLinks = [
 const TOP_OFFSET = 66;
 
 export const Navbar = () => {
-    const { userInfo } = useCurrentUser()
+    const { data: session } = useSession()
+
     const [showbg, setShowbg] = useState(false)
     const { setContentType, contentType } = useStreamStore()
     const router = useRouter()
@@ -97,7 +99,7 @@ export const Navbar = () => {
                         <div className="flex items-center">
                             {/* Profile dropdown */}
                             {
-                                userInfo ? (
+                                session?.user ? (
                                     <div className='flex gap-5 justify-center items-center'>
                                         <Link href={"/search"}>
                                             <MagnifyingGlassIcon className='size-6 cursor-pointer text-white hover:text-amber-600 ' />
@@ -111,7 +113,7 @@ export const Navbar = () => {
                                                         width={32}
                                                         height={32}
                                                         alt=""
-                                                        src={userInfo?.image || '/images/default-avatar.jpg'}
+                                                        src={session?.user?.picture || '/images/default-avatar.jpg'}
                                                         className="rounded-full"
                                                     />
                                                 </MenuButton>
@@ -161,7 +163,7 @@ export const Navbar = () => {
                     }
                 </div>
                 {
-                    userInfo && (
+                    session?.user && (
                         <div className="border-t border-gray-700 bg-black pb-3 pt-4">
                             <div className="flex items-center px-5">
                                 <div className="flex-shrink-0">
@@ -169,13 +171,13 @@ export const Navbar = () => {
                                         height={40}
                                         width={40}
                                         alt=""
-                                        src={userInfo?.image || '/images/default-avatar.jpg'}
+                                        src={session?.user?.picture || '/images/default-avatar.jpg'}
                                         className="h-10 w-10 rounded-full"
                                     />
                                 </div>
                                 <div className="ml-3">
-                                    <div className="text-base font-medium text-white">{userInfo?.name}</div>
-                                    <div className="text-sm font-medium text-gray-400">{userInfo?.email}</div>
+                                    <div className="text-base font-medium text-white">{session?.user?.name}</div>
+                                    <div className="text-sm font-medium text-gray-400">{session?.user?.email}</div>
                                 </div>
                             </div>
                             <div className="mt-3 space-y-1 px-2">
