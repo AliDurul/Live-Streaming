@@ -1,4 +1,4 @@
-import NextAuth, { User } from "next-auth"
+import NextAuth, { Account, User } from "next-auth"
 import credentials from "next-auth/providers/credentials"
 import facebook from "next-auth/providers/facebook"
 import Google from "next-auth/providers/google"
@@ -23,17 +23,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             credentials: {},
             async authorize(credentials) {
                 if (!credentials) return null
-
                 const { email, password } = credentials as any
-                
+
                 const res = await fetch(`${API_BASE_URL}/auth/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
+                    body: JSON.stringify({ email, password }),
+                    cache: 'no-store'
                 })
-
                 const user = await res.json()
-                
 
                 if (res.ok && user) {
                     return user
@@ -45,12 +43,39 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         })
 
     ],
+    events: {
+        async linkAccount({ user, account, profile }) {
+            // Handle linking of social accounts
+            const { email, name: username } = profile;
+            console.log(profile);
+            console.log(user);
+            console.log(account);
+  
+        }
+    },
     callbacks: {
-        async jwt({ token, user }: { token: JWT, user: User }) {
+
+        async signIn({ user, account, profile, email, credentials }) {
+            // checking if user is valid like email verification or balance or isactive
+            // console.log('signIn user==>', user);
+
+            // console.log('SignIn profile==>', profile);
+
+
+            return true
+        },
+        async jwt({ token, user, account, }: { token: JWT, user: User, account: Account | null }) {
+
+            if (account?.provider !== 'credentials') {
+                // console.log('line 69 jwt token==>', token);
+                // console.log('jwt user==>', user);
+                return token
+            }
+
             if (user) {
-                console.log('jwt user==>', user);
+                // console.log('line 74 jwt user==>', user);
                 token.access = user?.access
-                token.access = user?.refresh
+                token.refresh = user?.refresh
                 token.userInfo = jwtDecode<userInfo>(user?.access);
                 return token
             } else if (Date.now() < token.userInfo.exp * 1000) {
@@ -62,31 +87,30 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ refresh: token.refresh })
                     })
-
                     const tokens = await res.json()
-
                     if (!res.ok) throw tokens
-
                     token.access = tokens.access
-
                     return token
-
                 } catch (error) {
-                    console.error("Error refreshing access token", error);
+                    console.error("Error refreshing access token==>", error);
                     return { ...token, error: "RefreshAccessTokenError" as const };
                 }
             }
+
+
+
         },
         async session({ session, token }) {
-            const { access, refresh, userInfo, error } = token as JWT
-            session.user = userInfo as any
-            session.access = access
-            session.refresh = refresh
-            session.error = error
+            if (token.access) {
+                const { access, refresh, userInfo, error } = token as JWT
+                session.user = userInfo as any
+                session.access = access
+                session.refresh = refresh
+                session.error = error
+            }
+
             return session
         }
-
-
     },
     pages: { signIn: '/auth' },
     secret: process.env.AUTH_SECRET,

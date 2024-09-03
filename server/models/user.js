@@ -1,12 +1,15 @@
 import { Schema, model, set } from "mongoose";
-
+import { v4 as uuidv4 } from 'uuid'
 import hashPassword from '../helper/passwordEncrypt.js';
 
 const userSchema = Schema({
-    username: {
+    _id: {
+        type: String,
+        default: uuidv4,
+    },
+    name: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
     },
     email: {
@@ -17,10 +20,8 @@ const userSchema = Schema({
     },
     password: {
         type: String,
-        required: true,
-        set: (pass) => hashPassword(pass)
     },
-    image: {
+    picture: {
         type: String,
         default: "",
     },
