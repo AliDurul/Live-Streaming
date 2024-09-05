@@ -15,10 +15,7 @@ html {
 }
 
 .hero-bg {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.345)), url("/images/authHeader.jpg");
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url("/images/hero.png");
 }
 
 .shimmer {

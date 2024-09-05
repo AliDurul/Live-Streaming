@@ -12,9 +12,21 @@ const SignInForm = () => {
 
   const searchParams = useSearchParams()
   const emailAddress = searchParams.get('email')
-  const [email, setEmail] = useState(emailAddress || '')
-  const [userName, setUserName] = useState('')
-  const [password, setPassword] = useState('')
+
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: '',
+    userName: ''
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCredentials({
+      ...credentials,
+      [e.target.id]: e.target.value
+    })
+  }
+
+
   const [variant, setVariant] = useState('Login')
   const router = useRouter()
 
@@ -33,13 +45,14 @@ const SignInForm = () => {
   const handlelogin = async (e: any) => {
     e.preventDefault()
 
-    login({ email, password })
+    login({ email:credentials.email, password:credentials.password })
       .then((data) => {
         if (data?.error) {
           toast.error(data?.error);
         } else {
           toast.success('Login successful')
-          router.push('/stream')
+
+          router.replace('/profiles')
         }
       })
       .catch((error) => {
@@ -58,7 +71,7 @@ const SignInForm = () => {
         </h2>
         <p className="mt-2 text-sm leading-6 text-white">
           {variant === 'Login' ? 'New to us?' : 'Already a member?'}{' '}
-          <button type='button' onClick={toggleVariant} className="font-semibold text-orange-400 hover:text-orange-500">
+          <button type='button' onClick={toggleVariant} className="font-semibold text-red-500 hover:text-red-400 ">
 
             {variant === 'Login' ? 'Start a 7 day free trial' : 'Login to your account'}
           </button>
@@ -72,24 +85,24 @@ const SignInForm = () => {
             {variant === 'Register' && (
               <Input
                 label='User Name'
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setUserName(e.target.value) }}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleChange(e) }}
                 id='userName'
-                value={userName}
+                value={credentials.userName}
                 type='userName'
               />
             )}
             <Input
               label='Email'
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setEmail(e.target.value) }}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleChange(e) }}
               id='email'
-              value={email}
+              value={credentials.email}
               type='email'
             />
             <Input
               label='Password'
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setPassword(e.target.value) }}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleChange(e) }}
               id='password'
-              value={password}
+              value={credentials.password}
               type='password'
             />
 
@@ -107,7 +120,7 @@ const SignInForm = () => {
               </div>
 
               <div className="text-sm leading-6">
-                <a href="#" className="font-semibold text-orange-400  hover:text-orange-500">
+                <a href="#" className="font-semibold text-red-500 hover:text-red-400 ">
                   Forgot password?
                 </a>
               </div>
@@ -116,8 +129,7 @@ const SignInForm = () => {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-amber-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
-              >
+                className="flex w-full justify-center rounded-md bg-red-600 hover:bg-red-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700">
                 {variant === 'Login' ? 'Sign in' : 'Register'}
               </button>
             </div>
@@ -136,7 +148,7 @@ const SignInForm = () => {
           <div className="mt-7 grid grid-cols-2 gap-4">
             <button
               onClick={() => onClick('google')}
-              className="flex w-full items-center justify-center gap-3 rounded-md bg-amber-500 px-3 py-2 text-sm font-semibold  shadow-sm ring-1 ring-inset ring-orange-400 hover:bg-orange-600 focus-visible:ring-transparent">
+              className="flex w-full items-center justify-center gap-3 rounded-md bg-red-600 hover:bg-red-700 px-3 py-2 text-sm font-semibold  shadow-sm ring-1 ring-inset ring-red-400  focus-visible:ring-transparent">
               <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5">
                 <path
                   d="M12.0003 4.75C13.7703 4.75 15.3553 5.36002 16.6053 6.54998L20.0303 3.125C17.9502 1.19 15.2353 0 12.0003 0C7.31028 0 3.25527 2.69 1.28027 6.60998L5.27028 9.70498C6.21525 6.86002 8.87028 4.75 12.0003 4.75Z"
@@ -160,7 +172,7 @@ const SignInForm = () => {
 
             <button
               onClick={() => onClick('facebook')}
-              className="flex w-full items-center justify-center gap-3 rounded-md bg-amber-500 px-3 py-2 text-sm font-semibold  shadow-sm ring-1 ring-inset ring-orange-400 hover:bg-orange-600 focus-visible:ring-transparent">
+              className="flex w-full items-center justify-center gap-3 rounded-md bg-red-600 hover:bg-red-700 px-3 py-2 text-sm font-semibold  shadow-sm ring-1 ring-inset ring-red-400 focus-visible:ring-transparent">
               <svg xmlns="http://www.w3.org/2000/svg" className='h-5 w-5' viewBox="0 0 128 128"><rect width="118.35" height="118.35" x="4.83" y="4.83" fill="#3d5a98" rx="6.53" ry="6.53" /><path fill="#fff" d="M86.48 123.17V77.34h15.38l2.3-17.86H86.48v-11.4c0-5.17 1.44-8.7 8.85-8.7h9.46v-16A126.56 126.56 0 0 0 91 22.7c-13.62 0-23 8.3-23 23.61v13.17H52.62v17.86H68v45.83z" />
               </svg>
               <span className="text-sm font-semibold leading-6">Facebook</span>

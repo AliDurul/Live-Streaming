@@ -20,7 +20,7 @@ export default function HomeScreenForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
-            <button className='bg-pr hover:bg-yellow-400 transition text-xl lg:text-2xl px-2 lg:px-6 py-1 md:py-2 rounded flex justify-center items-center'>
+            <button className='bg-red-600 text-xl lg:text-2xl px-2 lg:px-6 py-1 md:py-2 rounded flex justify-center items-center'>
                 Get Started
                 <ChevronRightIcon className='size-8 md:size-6' />
             </button>

@@ -10,7 +10,6 @@ import { SignOutBtn } from './SignOutBtn';
 import useStreamStore from '@/stores/store';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import logo from '../../../public/images/logo.png'
 
 
 const links = [
@@ -62,7 +61,7 @@ export const Navbar = () => {
                                 // width={70}
                                 // height={70}
                                 alt="Icon Zambia"
-                                src={logo}
+                                src={''}
                                 className=" w-40"
                             />
                         </div>
