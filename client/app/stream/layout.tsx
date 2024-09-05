@@ -17,13 +17,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     const session = await auth();
 
     return (
-        <html lang="en">
-            <body className={inter.className}>
-                <SessionProvider session={session} refetchInterval={60 * 60 * 24 * 3}>
-                    <Navbar />
-                    {children}
-                </SessionProvider>
-            </body>
-        </html>
+        <section>
+            <SessionProvider session={session} refetchInterval={60 * 60 * 24 * 3}>
+                <Navbar />
+                {children}
+            </SessionProvider>
+        </section>
     );
 }

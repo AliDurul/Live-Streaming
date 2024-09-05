@@ -4,7 +4,7 @@ import Input from './Input'
 import { signIn } from 'next-auth/react'
 import { DEFAULT_LOGIN_REDIRECT } from '@/utils/routes'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { login } from '../authActions'
+import { login, register } from '../authActions'
 import { toast } from 'react-toastify'
 
 
@@ -16,7 +16,7 @@ const SignInForm = () => {
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
-    userName: ''
+    name: ''
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,22 +44,35 @@ const SignInForm = () => {
 
   const handlelogin = async (e: any) => {
     e.preventDefault()
+    console.log(variant);
 
-    login({ email:credentials.email, password:credentials.password })
-      .then((data) => {
-        if (data?.error) {
-          toast.error(data?.error);
-        } else {
-          toast.success('Login successful')
+    if (variant === 'Login') {
+      login({ email: credentials.email, password: credentials.password })
+        .then((data) => {
+          if (data?.error) {
+            toast.error(data?.error);
+          } else {
+            toast.success('Login successful')
 
-          router.replace('/profiles')
-        }
-      })
-      .catch((error) => {
-        toast.error(error.message, {
-          position: "top-center"
-        });
-      })
+            router.replace('/profiles')
+          }
+        })
+        .catch((error) => {
+          toast.error(error.message, {
+            position: "top-center"
+          });
+        })
+    } else {
+      const res = await register(credentials)
+      console.log(res);
+      if (res.error) {
+        toast.error(res.error)
+      } else {
+        toast.success('Register successful')
+        
+      }
+    }
+
 
   }
 
@@ -86,9 +99,9 @@ const SignInForm = () => {
               <Input
                 label='User Name'
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => { handleChange(e) }}
-                id='userName'
-                value={credentials.userName}
-                type='userName'
+                id='name'
+                value={credentials.name}
+                type='text'
               />
             )}
             <Input

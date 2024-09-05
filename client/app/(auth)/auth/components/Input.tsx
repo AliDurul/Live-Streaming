@@ -15,6 +15,7 @@ export default function Input({ id, onChange, value, label, type }: InputProps) 
                 value={value}
                 id={id}
                 type={type}
+                required
                 onChange={onChange}
                 placeholder=' '
                 className='block rounded-md px-6 pt-6 pb-1 w-full text-md text-white bg-neutral-700 appearance-none focus:outline-none focus:right-0 peer' />

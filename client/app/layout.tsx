@@ -3,10 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
-import ToastProvider from "./layoutComponents/ToastProvider";
+// import ToastProvider from "./layoutComponents/ToastProvider";
 import Toastify from "./layoutComponents/Toastify";
-// import dynamic from "next/dynamic";
-// const Toastify = dynamic(() => import("./layoutComponents/Toastify"), { ssr: false });
+import dynamic from "next/dynamic";
+const ToastProvider = dynamic(() => import("./layoutComponents/ToastProvider"), { ssr: false });
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +22,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="en" >
       <body className={inter.className} >
-        {/* <ToastProvider> */}
+        <ToastProvider>
           <SessionProvider session={session} refetchInterval={60 * 60 * 24 * 1}>
             {children}
           </SessionProvider>
-        {/* </ToastProvider> */}
+        </ToastProvider>
       </body>
     </html>
   );
