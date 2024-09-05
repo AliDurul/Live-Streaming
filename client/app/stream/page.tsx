@@ -15,10 +15,7 @@ export default async function page() {
             <StreamHeader />
             {/* <MovieList /> */}
 
-       
-            {
-                <p>{JSON.stringify(session)}</p>
-            }
+
             <Sliders />
 
 

@@ -59,10 +59,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         body: JSON.stringify({ email, sub, name, picture }),
                     })
 
+                
                     if (!res.ok) throw new Error('Failed to register user')
 
                     const userTokens = await res.json()
 
+                    console.log('line 67 userTokens==>', userTokens);
                     user.access = userTokens.access
                     user.refresh = userTokens.refresh
                 }
@@ -79,7 +81,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 token.access = user?.access
                 token.refresh = user?.refresh
                 token.userInfo = jwtDecode<userInfo>(user?.access);
-                console.log('line 82 jwt token==>', token);
+                console.log('line 84 jwt token==>', token);
                 return token
             } else if (Date.now() < token.userInfo.exp * 1000) {
                 return token

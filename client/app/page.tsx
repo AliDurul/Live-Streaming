@@ -2,33 +2,41 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import HomeScreenForm from './(auth)/auth/components/HomeScreenForm'
+import logo from '../public/images/logo.png'
 
 export default async function MainPage() {
 
     return (
-        <div className='hero-bg relative'>
+        <div className='relative'>
             {/* Navbar */}
-            <header className='max-w-6xl mx-auto flex items-center justify-between p-4 pb-10'>
-                <Image width={50} height={50} src='/images/logo.png' alt='Netflix Logo' className='w-10 md:w-32' />
-                <div className="flex gap-4">
+            <div className='hero-bg'>
 
-                    <Link href={"/stream"} className='text-white py-1 px-2 rounded underline underline-offset-4'>
-                        What is in there ? Take a look !
-                    </Link>
+                <header className='max-w-7xl mx-auto flex items-center justify-between p-4 pb-10'>
+                    <Image src={logo} alt='Icon ZM Logo' className='w-20 md:w-40' />
+                    <div className="flex gap-10">
 
-                    <Link href={"/auth"} className='text-white bg-orange-500 py-1 px-3 rounded'>
-                        Sign In
-                    </Link>
+                        <Link href={'/stream'} style={{ color: 'black' }} className='text-black bg-pr py-1 px-3 rounded font-bold hover:bg-yellow-400   transition'>
+                            Watch Now
+                        </Link>
+
+                        <Link href={"/auth"} className='text-white bg-pr  hover:bg-yellow-400 py-1 px-3 rounded hover:text-gray-950 transition'>
+                            Buy A Ticket
+                        </Link>
+                        <Link href={"/auth"} className='text-white bg-pr py-1 px-3 rounded hover:bg-yellow-400 transition'>
+                            Sign In
+                        </Link>
+                    </div>
+                </header>
+
+
+                {/* hero section */}
+                <div className='flex flex-col items-center justify-center text-center pt-40 pb-20  text-white max-w-6xl mx-auto'>
+                    <h1 className='text-4xl md:text-5xl font-bold mb-4 '>Zambia Top Rated Talent Live Show</h1>
+                    <p className='text-lg mb-4 font-semibold'>  Where Every Note atters</p>
+                    <p className='mb-4 font-semibold'>Create Account to Vote Your Favorites Contestants </p>
+
+                    <HomeScreenForm />
                 </div>
-            </header>
-
-            {/* hero section */}
-            <div className='flex flex-col items-center justify-center text-center py-40 text-white max-w-6xl mx-auto'>
-                <h1 className='text-4xl md:text-6xl font-bold mb-4'>Unlimited movies, TV shows, and more</h1>
-                <p className='text-lg mb-4'>Watch anywhere. Cancel anytime.</p>
-                <p className='mb-4'>Ready to watch? Enter your email to create or restart your membership.</p>
-
-                <HomeScreenForm />
             </div>
 
             {/* separator */}
@@ -39,10 +47,10 @@ export default async function MainPage() {
                 <div className='flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col px-4 md:px-2'>
                     {/* left side */}
                     <div className='flex-1 text-center md:text-left'>
-                        <h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Enjoy on your TV</h2>
-                        <p className='text-lg md:text-xl'>
-                            Watch on Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.
-                        </p>
+                        <h2 className='text-4xl md:text-4xl font-extrabold mb-4'>Experience the thrill of Icon Zambia like never before</h2>
+                        <Link href={'/stream'} className='w-fit  text-black bg-pr py-1 px-3 rounded font-bold hover:bg-yellow-400   transition'>
+                            Watch Now ..
+                        </Link>
                     </div>
                     {/* right side */}
                     <div className='flex-1 relative'>
@@ -62,12 +70,11 @@ export default async function MainPage() {
             </div>
 
             {/* separator */}
-            <div className='h-2 w-full bg-[#232323]' aria-hidden='true' />
+            {/* <div className='h-2 w-full bg-[#232323]' aria-hidden='true' /> */}
 
             {/* 2nd section */}
-            <div className='py-10 bg-black text-white'>
+            {/* <div className='py-10 bg-black text-white'>
                 <div className='flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col-reverse px-4 md:px-2'>
-                    {/* left side */}
                     <div className='flex-1 relative'>
                         <div className='relative'>
                             <img src='/images/stranger-things-lg.png' alt='Stranger Things img' className='mt-4' />
@@ -86,8 +93,6 @@ export default async function MainPage() {
                             </div>
                         </div>
                     </div>
-                    {/* right side */}
-
                     <div className='flex-1 md:text-left text-center'>
                         <h2 className='text-4xl md:text-5xl font-extrabold mb-4 text-balance'>
                             Download your shows to watch offline
@@ -97,16 +102,15 @@ export default async function MainPage() {
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* separator */}
 
             <div className='h-2 w-full bg-[#232323]' aria-hidden='true' />
 
             {/* 3rd section */}
-            <div className='py-10 bg-black text-white'>
+            {/* <div className='py-10 bg-black text-white'>
                 <div className='flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col px-4 md:px-2'>
-                    {/* left side */}
                     <div className='flex-1 text-center md:text-left'>
                         <h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Watch everywhere</h2>
                         <p className='text-lg md:text-xl'>
@@ -114,7 +118,6 @@ export default async function MainPage() {
                         </p>
                     </div>
 
-                    {/* right side */}
                     <div className='flex-1 relative overflow-hidden'>
                         <Image width={600} height={600} src='/images/device-pile.png' alt='Device image' className='mt-4 z-20 relative' />
                         <video
@@ -125,11 +128,10 @@ export default async function MainPage() {
                             loop
                             src='/videos/video-devices.m4v'
                         >
-                            {/* <source src='/images/video-devices.m4v' type='video/mp4' /> */}
                         </video>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

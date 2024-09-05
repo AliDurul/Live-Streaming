@@ -8,7 +8,7 @@ export const MovieIdPage = ({ params }: { params: string }) => {
   return (
     <div className='h-screen w-screen bg-black'>
       <WatchBackBtn />
-      <video autoPlay controls poster='/images/poster.png' className='w-full h-full' src='/videos/howto.mp4'></video>
+      <video autoPlay controls poster='/images/poster.png' className='w-full h-full' src='/videos/The Icon Zambia.mp4'></video>
     </div>
   )
 }

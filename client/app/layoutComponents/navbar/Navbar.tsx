@@ -10,6 +10,8 @@ import { SignOutBtn } from './SignOutBtn';
 import useStreamStore from '@/stores/store';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import logo from '../../../public/images/logo.png'
+
 
 const links = [
     { label: 'Movies', href: 'movie' },
@@ -29,7 +31,7 @@ export const Navbar = () => {
     const { setContentType, contentType } = useStreamStore()
     const router = useRouter()
     const pathname = usePathname()
-    
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,6 +49,7 @@ export const Navbar = () => {
         }
     }, [])
 
+    console.log(session?.user.picture);
 
     return (
         <Disclosure as="nav" className={`fixed w-full z-40  transition duration-75 ${showbg && 'bg-zinc-900 bg-opacity-90 shadow-md backdrop-blur-md'}`}>
@@ -56,11 +59,11 @@ export const Navbar = () => {
                         <div className="flex-shrink-0 cursor-pointer" onClick={() => router.push('/stream')}>
                             <Image
                                 placeholder='empty'
-                                width={70}
-                                height={70}
+                                // width={70}
+                                // height={70}
                                 alt="Icon Zambia"
-                                src="/images/logo.png"
-                                className=" w-auto"
+                                src={logo}
+                                className=" w-40"
                             />
                         </div>
                         <div className="hidden lg:ml-6 lg:block">
@@ -113,7 +116,7 @@ export const Navbar = () => {
                                                         width={32}
                                                         height={32}
                                                         alt=""
-                                                        src={session?.user?.picture || '/images/default-avatar.jpg'}
+                                                        src={session?.user?.picture.startsWith('https') ? session.user.picture : `/images${session.user.picture}`}
                                                         className="rounded-full"
                                                     />
                                                 </MenuButton>
@@ -171,7 +174,7 @@ export const Navbar = () => {
                                         height={40}
                                         width={40}
                                         alt=""
-                                        src={session?.user?.picture || '/images/default-avatar.jpg'}
+                                        src={session?.user?.picture.startsWith('https') ? session.user.picture : `/images${session.user.picture}`}
                                         className="h-10 w-10 rounded-full"
                                     />
                                 </div>

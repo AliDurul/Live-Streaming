@@ -14,7 +14,12 @@ html {
 	@apply h-full;
 }
 
-
+.hero-bg {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.345)), url("/images/authHeader.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
 
 .shimmer {
 	animation: shimmer 2s infinite linear;

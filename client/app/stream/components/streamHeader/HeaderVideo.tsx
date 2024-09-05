@@ -13,7 +13,7 @@ export default function StreamVideo() {
                 autoPlay
                 muted
                 loop
-                src='/videos/The Icon Zambia.mp4'
+                src='/videos/homeScreen.mp4'
                 className='object-cover w-full h-full brightness-75 '
                 onLoad={() => { setImgLoading(false); console.log('loaded') }}
             >
