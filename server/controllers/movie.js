@@ -5,6 +5,9 @@ export async function getTrendingMovie(req, res) {
     const data = await fetchFromTMDB("https://api.themoviedb.org/3/trending/movie/day?language=en-US");
     const randomMovie = data.results[Math.floor(Math.random() * data.results?.length)];
 
+    const content = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${randomMovie.id}/videos?language=en-US`);
+
+    
     res.status(200).send({
         success: true,
         content: randomMovie
