@@ -42,23 +42,38 @@ export const login = async (loginData: LoginType) => {
 export const register = async (registerData: RegisterType) => {
 
     try {
-        const res = await fetch(`${API_BASE_URL}/auth/register`, {
+        const resAPI = await fetch(`${API_BASE_URL}/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(registerData),
         })
 
-        const data = await res.json()
+        const data = await resAPI.json()
 
-        if (res.ok) {
-            return data;
-        } else {
+        if (!resAPI.ok) {
             throw new Error(data.message || "Something went wrong, Please try again!");
         }
 
+        const resAuth = await signIn('credentials', {
+            email: registerData.email,
+            password: registerData.password,
+            redirect: false
+        })
+
 
     } catch (error: any) {
-        return { error: error.message };
+
+        if (error instanceof AuthError) {
+            switch (error.type) {
+                case 'CredentialsSignin':
+                    return { error: 'Invalid credentials' }
+                default:
+                    return { error: "Something went wrong" }
+            }
+        } else {
+            return {error: error.message || "Something went wrong"}
+        }
+        throw error
     }
 
 }

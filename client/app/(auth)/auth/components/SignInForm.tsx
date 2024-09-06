@@ -44,7 +44,6 @@ const SignInForm = () => {
 
   const handlelogin = async (e: any) => {
     e.preventDefault()
-    console.log(variant);
 
     if (variant === 'Login') {
       login({ email: credentials.email, password: credentials.password })
@@ -64,16 +63,13 @@ const SignInForm = () => {
         })
     } else {
       const res = await register(credentials)
-      console.log(res);
-      if (res.error) {
+      if (res?.error) {
         toast.error(res.error)
       } else {
-        toast.success('Register successful')
-        
+        toast.success('Login successful')
+        router.replace('/profiles')
       }
     }
-
-
   }
 
   return (
@@ -85,7 +81,6 @@ const SignInForm = () => {
         <p className="mt-2 text-sm leading-6 text-white">
           {variant === 'Login' ? 'New to us?' : 'Already a member?'}{' '}
           <button type='button' onClick={toggleVariant} className="font-semibold text-red-500 hover:text-red-400 ">
-
             {variant === 'Login' ? 'Start a 7 day free trial' : 'Login to your account'}
           </button>
         </p>

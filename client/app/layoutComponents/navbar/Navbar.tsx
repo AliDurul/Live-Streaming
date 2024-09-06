@@ -10,6 +10,7 @@ import { SignOutBtn } from './SignOutBtn';
 import useStreamStore from '@/stores/store';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import netflixLogo from "@/public/images/netflix-logo.png"
 
 
 const links = [
@@ -48,7 +49,6 @@ export const Navbar = () => {
         }
     }, [])
 
-    console.log(session?.user.picture);
 
     return (
         <Disclosure as="nav" className={`fixed w-full z-40  transition duration-75 ${showbg && 'bg-zinc-900 bg-opacity-90 shadow-md backdrop-blur-md'}`}>
@@ -61,8 +61,9 @@ export const Navbar = () => {
                                 // width={70}
                                 // height={70}
                                 alt="Icon Zambia"
-                                src={''}
-                                className=" w-40"
+                                src={netflixLogo}
+                                width={70}
+                                // className=" w-40"
                             />
                         </div>
                         <div className="hidden lg:ml-6 lg:block">
