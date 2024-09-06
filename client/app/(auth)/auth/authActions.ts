@@ -18,19 +18,21 @@ interface RegisterType extends LoginType {
 
 export const login = async (loginData: LoginType) => {
     const { email, password } = loginData
-    console.log('line21 loginData', loginData);
     try {
-        const res = await signIn('credentials', {
+        await signIn('credentials', {
             email,
             password,
             redirect: false
         })
-
+        return { success: true }
     } catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {
                 case 'CredentialsSignin':
                     return { error: 'Invalid credentials' }
+                case 'CallbackRouteError':
+                    const errorMessage = error?.cause?.err?.message;
+                    return { error: errorMessage };
                 default:
                     return { error: "Something went wrong" }
             }
@@ -54,7 +56,7 @@ export const register = async (registerData: RegisterType) => {
             throw new Error(data.message || "Something went wrong, Please try again!");
         }
 
-        const resAuth = await signIn('credentials', {
+        await signIn('credentials', {
             email: registerData.email,
             password: registerData.password,
             redirect: false
@@ -67,13 +69,15 @@ export const register = async (registerData: RegisterType) => {
             switch (error.type) {
                 case 'CredentialsSignin':
                     return { error: 'Invalid credentials' }
+                case 'CallbackRouteError':
+                    const errorMessage = error?.cause?.err?.message;
+                    return { error: errorMessage };
                 default:
                     return { error: "Something went wrong" }
             }
         } else {
-            return {error: error.message || "Something went wrong"}
+            return { error: error.message || "Something went wrong" }
         }
-        throw error
     }
 
 }

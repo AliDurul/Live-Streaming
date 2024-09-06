@@ -46,29 +46,17 @@ const SignInForm = () => {
     e.preventDefault()
 
     if (variant === 'Login') {
-      login({ email: credentials.email, password: credentials.password })
-        .then((data) => {
-          if (data?.error) {
-            toast.error(data?.error);
-          } else {
-            toast.success('Login successful')
+      // LOGIN
+      const res = await login({ email: credentials.email, password: credentials.password })
+      if (res?.error) toast.error(res.error.trim())
+      else { toast.success('Login successful'); router.replace('/profiles') }
 
-            router.replace('/profiles')
-          }
-        })
-        .catch((error) => {
-          toast.error(error.message, {
-            position: "top-center"
-          });
-        })
     } else {
+      // REGISTER
       const res = await register(credentials)
-      if (res?.error) {
-        toast.error(res.error)
-      } else {
-        toast.success('Login successful')
-        router.replace('/profiles')
-      }
+      if (res?.error) toast.error(res.error.trim())
+      else { toast.success('Register successful'); router.replace('/profiles') }
+
     }
   }
 

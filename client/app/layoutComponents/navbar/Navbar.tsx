@@ -1,7 +1,6 @@
 'use client'
 import React, { use, useEffect, useState } from 'react'
 import Image from 'next/image';
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link';
@@ -11,11 +10,22 @@ import useStreamStore from '@/stores/store';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import netflixLogo from "@/public/images/netflix-logo.png"
+import { signOut } from "next-auth/react"
+import { ArrowLeftStartOnRectangleIcon, Bars4Icon } from '@heroicons/react/24/solid';
 
 
-const links = [
-    { label: 'Movies', href: 'movie' },
-    { label: 'Series', href: 'series' },
+
+const pages = [
+    { label: 'Search History', href: 'search-history' },
+    { label: 'Live', href: '/stream/live' },
+
+]
+
+const buttons = [
+    { label: 'Tv Shows', value: 'tv' },
+    { label: 'Series', value: 'series' },
+    { label: 'Movies', value: 'movie' },
+
 ]
 
 const profileLinks = [
@@ -26,6 +36,8 @@ const TOP_OFFSET = 66;
 
 export const Navbar = () => {
     const { data: session } = useSession()
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
     const [showbg, setShowbg] = useState(false)
     const { setContentType, contentType } = useStreamStore()
@@ -51,158 +63,78 @@ export const Navbar = () => {
 
 
     return (
-        <Disclosure as="nav" className={`fixed w-full z-40  transition duration-75 ${showbg && 'bg-zinc-900 bg-opacity-90 shadow-md backdrop-blur-md'}`}>
-            <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
-                <div className="relative flex h-12 sm:h-16 items-center justify-between">
-                    <div className="flex items-center px-2 lg:px-0">
-                        <div className="flex-shrink-0 cursor-pointer" onClick={() => router.push('/stream')}>
-                            <Image
-                                placeholder='empty'
-                                // width={70}
-                                // height={70}
-                                alt="Icon Zambia"
-                                src={netflixLogo}
-                                width={70}
-                                // className=" w-40"
-                            />
-                        </div>
-                        <div className="hidden lg:ml-6 lg:block">
-                            <div className="flex space-x-4">
-                                {/* <button onClick={() => { setContentType('movie'); router.push('/stream') }} className={` ${pathname === '/stream' ? 'text-amber-700 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold text-white cursor-pointer hover:text-amber-600 transition`}>
-                                    Home
-                                </button> */}
+        <header className={`fixed w-full z-40 transition duration-75 ${showbg ? 'bg-zinc-900 bg-opacity-80 shadow-md backdrop-blur-lg' : ''}`}>
+            <div className={`max-w-7xl relative mx-auto flex flex-wrap items-center justify-between p-4 h-20`}>
+                <div className='flex items-center gap-10  z-50'>
+                    <Link href='/'>
+                        <Image src={netflixLogo} alt='Netflix Logo' className='w-32 sm:w-40' />
+                    </Link>
 
-                                {
-                                    links.map((link, i) => (
-                                        <button onClick={() => setContentType(link.href)} key={i}
-                                            className={` ${contentType === link.href ? 'text-amber-700 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold cursor-pointer hover:text-amber-600 transition`}>
-                                            {link.label}
-                                        </button>
-                                    ))
-                                }
-                                <Link href={'/stream/my_list'} className={` ${pathname === '/live' ? 'text-amber-700 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold  cursor-pointer hover:text-amber-600 transition`}>
-                                    My List
-                                </Link>
-                                <button onClick={() => { setContentType('live'); router.push('/stream/live') }} className={` ${pathname === '/live' ? 'text-amber-700 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold  cursor-pointer hover:text-amber-600 transition`}>
-                                    Live
+                    {/* desktop navbar items */}
+                    <div className='hidden lg:flex gap-x-4  items-center'>
+                        {
+                            buttons.map((btn, i) => (
+                                <button key={i}
+                                    className={` ${pathname === '/stream' && contentType === btn.value ? 'text-red-600 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold cursor-pointer hover:text-red-700 transition`}
+                                    onClick={() => { setContentType(btn.value); router.push('/stream') }}>
+                                    {btn.label}
                                 </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="flex lg:hidden">
-                        <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                            <span className="absolute -inset-0.5" />
-                            <span className="sr-only">Open main menu</span>
-                            <Bars3Icon aria-hidden="true" className="block h-6 w-6 group-data-[open]:hidden" />
-                            <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-[open]:block" />
-                        </DisclosureButton>
-                    </div>
-                    <div className="hidden lg:ml-4 lg:block">
-                        <div className="flex items-center">
-                            {/* Profile dropdown */}
-                            {
-                                session?.user ? (
-                                    <div className='flex gap-5 justify-center items-center'>
-                                        <Link href={"/search"}>
-                                            <MagnifyingGlassIcon className='size-6 cursor-pointer text-white hover:text-amber-600 ' />
-                                        </Link>
-                                        <Menu as="div" className="relative  flex-shrink-0">
-                                            <div>
-                                                <MenuButton className="relative flex rounded-full bg-gray-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                                                    <span className="absolute -inset-1.5" />
-                                                    <span className="sr-only">Open user menu</span>
-                                                    <Image
-                                                        width={32}
-                                                        height={32}
-                                                        alt=""
-                                                        src={session?.user?.picture.startsWith('https') ? session.user.picture : `/images${session.user.picture}`}
-                                                        className="rounded-full"
-                                                    />
-                                                </MenuButton>
-                                            </div>
-
-                                            <MenuItems
-                                                transition
-                                                className="absolute right-0 z-50  w-32 origin-top-right rounded-md bg-black py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-                                            >
-                                                {
-                                                    profileLinks.map((link, i) => (
-                                                        <MenuItem key={i}>
-                                                            <Link href={link.href} className="block px-4 py-2 text-sm text-white data-[focus]:text-gray-300">
-                                                                {link.label}
-                                                            </Link>
-                                                        </MenuItem>
-                                                    ))
-                                                }
-                                                <SignOutBtn isSmalScreen={false} />
-                                            </MenuItems>
-                                        </Menu>
-                                    </div>
-                                ) : (
-                                    <Link href="/auth" className="px-3 py-2 text-sm font-semibold text-white cursor-pointer hover:text-amber-600 transition">
-                                        Sign In
-                                    </Link>
-                                )
-                            }
-                        </div>
+                            ))
+                        }
+                        {
+                            pages.map((page, i) => (
+                                <Link href={page.href} key={i} className={` ${pathname === page.href ? 'text-red-600 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold cursor-pointer hover:text-red-700 transition`} >
+                                    {page.label}
+                                </Link>
+                            ))
+                        }
                     </div>
                 </div>
+
+                <div className='flex space-x-4 items-center z-50'>
+                    <Link href={"/search"}>
+                        <MagnifyingGlassIcon className='size-6 cursor-pointer' />
+                    </Link>
+                    <div className="relative group">
+                        <Image
+                            src={session?.user?.picture.startsWith('https') ? session.user.picture : `/images${session?.user.picture}`}
+                            width={32}
+                            height={32}
+                            alt='Avatar'
+                            className='  h-8 rounded cursor-pointer'
+                        />
+                        <p className='absolute opacity-0 transform translate-y-2 -left-4 top-10 bg-white p-3 rounded shadow-lg transition duration-300 cursor-pointer group-hover:opacity-100 group-hover:translate-y-0'>
+                            {session?.user.name}
+                        </p>
+                    </div>
+
+                    <ArrowLeftStartOnRectangleIcon className='size-7 cursor-pointer' onClick={() => signOut()} />
+                    <div className='lg:hidden'>
+                        <Bars4Icon className='size-6 cursor-pointer' onClick={toggleMobileMenu} />
+                    </div>
+                </div>
+
+                {/* mobile navbar items */}
+                {isMobileMenuOpen && (
+                    <div className='absolute lg:hidden w-1/3 top-16 right-4  z-50 bg-black border rounded border-gray-800 '>
+                        {
+                            buttons.map((btn, i) => (
+                                <button key={i} className={` ${contentType === btn.value ? 'text-red-600 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold cursor-pointer hover:text-red-700 transition`} onClick={() => setContentType(btn.value)}>
+                                    {btn.label}
+                                </button>
+                            ))
+                        }
+                        {
+                            pages.map((page, i) => (
+                                <Link key={i} href={page.href} className={`block hover:underline underline-offset-4 p-2 ${pathname === page.href && 'text-red-600 underline font-bold'}`} onClick={toggleMobileMenu}>
+                                    {page.label}
+                                </Link>
+                            ))
+                        }
+                    </div>
+                )}
             </div>
+        </header>
 
-            <DisclosurePanel className="lg:hidden">
-                <div className="space-y-1 px-2 pb-3 pt-2 bg-black">
-                    {
-                        links.map((link, i) => (
-                            <DisclosureButton
-                                key={i}
-                                as="a"
-                                href={link.href}
-                                className="block rounded px-3 py-2 text-base font-medium text-white"
-                            >
-                                {link.label}
-                            </DisclosureButton>
-                        ))
-                    }
-                </div>
-                {
-                    session?.user && (
-                        <div className="border-t border-gray-700 bg-black pb-3 pt-4">
-                            <div className="flex items-center px-5">
-                                <div className="flex-shrink-0">
-                                    <Image
-                                        height={40}
-                                        width={40}
-                                        alt=""
-                                        src={session?.user?.picture.startsWith('https') ? session.user.picture : `/images${session.user.picture}`}
-                                        className="h-10 w-10 rounded-full"
-                                    />
-                                </div>
-                                <div className="ml-3">
-                                    <div className="text-base font-medium text-white">{session?.user?.name}</div>
-                                    <div className="text-sm font-medium text-gray-400">{session?.user?.email}</div>
-                                </div>
-                            </div>
-                            <div className="mt-3 space-y-1 px-2">
-                                {
-                                    profileLinks.map((link, i) => (
-                                        <DisclosureButton
-                                            key={i}
-                                            as="a"
-                                            href={link.href}
-                                            className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                                        >
-                                            {link.label}
-                                        </DisclosureButton>
-                                    ))
-                                }
-                                <SignOutBtn isSmalScreen={true} />
-                            </div>
-                        </div>
-                    )
-                }
-
-            </DisclosurePanel>
-        </Disclosure>
     )
 }
