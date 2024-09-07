@@ -32,53 +32,67 @@ export default function SliderCom({ category }: { category: string }) {
       const res = await getContent({ contentType, category })
       console.log(res);
 
-      if (res.error) {
+      if (res?.error) {
         toast.error(res.message)
+      } else if (res?.success) {
+        console.log(res?.content);
+
+        setContent(res?.content)
       }
 
     })()
-    console.log(contentType);
   }, [contentType, category])
 
   return (
-    <div className="text-white px-10 pt-10 ">
+    <div className="text-white px-10 pt-12 ">
 
       <h2 className='mb-4 text-2xl font-bold'>
         {formattedCategoryName} {formattedContentType}
       </h2>
 
-      <Swiper
-        modules={[Navigation, A11y, Keyboard]}
-        spaceBetween={10}
-        slidesPerView={1}
-        keyboard={{ enabled: true }}
-        navigation
-        // onSwiper={(swiper) => console.log(swiper)}
-        // onSlideChange={() => console.log('slide change')}
-        breakpoints={{
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 30,
-          },
-          1024: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-        }}
-      >
-        {/* {
-          content.map((item, index) => (
-            <SwiperSlide key={index}>
-              <MovieCard data={item} />
-            </SwiperSlide>
-          ))
+      {
+        content.length > 0 && (
+          <Swiper
+            modules={[Navigation, A11y, Keyboard]}
+            spaceBetween={10}
+            slidesPerView={1}
+            keyboard={{ enabled: true }}
+            navigation
+            // onSwiper={(swiper) => console.log(swiper)}
+            // onSlideChange={() => console.log('slide change')}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+              },
+            }}
+          >
+            {
+              content.map((item:any, index:number)  => {
 
-        } */}
-      </Swiper>
+                if(!item?.backdrop_path) return
+
+                return (
+                  <SwiperSlide key={index}>
+                    <MovieCard item={item} />
+                  </SwiperSlide>
+                )
+              }
+              )
+
+            }
+          </Swiper> 
+        )
+      }
+
     </div>
   );
 }
