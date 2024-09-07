@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 
-export default function useTrendingContent() {
+export default  function useTrendingContent() {
 
-    const API_BASEURL = process.env.NEXT_PUBLIC_API_BASEURL;
+    const API_BASEURL = process.env.NEXT_PUBLIC_API_BASE_URL;
     const [trendingContent, setTrendingContent] = useState(null);
     const { contentType } = useStreamStore();
 

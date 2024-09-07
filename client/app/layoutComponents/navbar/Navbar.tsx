@@ -22,8 +22,7 @@ const pages = [
 ]
 
 const buttons = [
-    { label: 'Tv Shows', value: 'tv' },
-    { label: 'Series', value: 'series' },
+    { label: 'Tv Series', value: 'tv' },
     { label: 'Movies', value: 'movie' },
 
 ]

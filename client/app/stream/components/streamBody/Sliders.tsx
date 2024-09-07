@@ -1,12 +1,17 @@
 'use client'
 import { MOVIE_CATEGORIES, TV_CATEGORIES } from '@/utils/constants'
-import React from 'react'
+import React, { useEffect } from 'react'
 import MovieSlider from './MovieSlider'
 import useStreamStore from '@/stores/store'
 import SliderCom from '../SliderCom'
+import axios from 'axios'
+import { getContent } from '../../streamActions'
 
 export default function Sliders() {
+
   const { contentType } = useStreamStore()
+
+
   return (
     <>
       {

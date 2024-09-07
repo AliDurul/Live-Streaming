@@ -3,14 +3,16 @@ import { fetchFromTMDB } from "../services/tmdb.js";
 export async function getTrendingMovie(req, res) {
 
     const data = await fetchFromTMDB("https://api.themoviedb.org/3/trending/movie/day?language=en-US");
-    const randomMovie = data.results[Math.floor(Math.random() * data.results?.length)];
 
-    const content = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${randomMovie.id}/videos?language=en-US`);
+    const movieInfo = data.results[Math.floor(Math.random() * data.results?.length)];
 
-    
+    const movieVideos = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${movieInfo.id}/videos?language=en-US`);
+
+    const content = { ...movieInfo, ...movieVideos }
+
     res.status(200).send({
         success: true,
-        content: randomMovie
+        content,
     })
 }
 

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigation, A11y, Autoplay, Keyboard } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css';
@@ -7,6 +7,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import useStreamStore from "@/stores/store";
 import MovieCard from "./MovieCard/MovieCard";
+import { getContent } from "../streamActions";
+import { toast } from "react-toastify";
 
 interface ContentItem {
   id: number;
@@ -15,21 +17,28 @@ interface ContentItem {
   name?: string;
 }
 
-export default function SliderCom({ category }: { category: any }) {
+export default function SliderCom({ category }: { category: string }) {
 
   const { contentType } = useStreamStore();
+  const [content, setContent] = useState([])
 
-  const [content, setContent] = useState<ContentItem[]>([
-    { id: 1, backdrop_path: '/images/header.jpg', title: 'Movie 0' },
-    { id: 2, backdrop_path: '/images/poster.png', title: 'Movie 1' },
-    { id: 3, backdrop_path: '/images/poster.png', title: 'Movie 2' },
-    { id: 4, backdrop_path: '/images/poster.png', title: 'Movie 3' },
-    { id: 5, backdrop_path: '/images/poster.png', title: 'Movie 3' },
-    { id: 6, backdrop_path: '/images/poster.png', title: 'Movie 3' },
-  ]);
+
 
   const formattedCategoryName = category.replaceAll("_", " ")[0].toUpperCase() + category.replaceAll("_", " ").slice(1);
   const formattedContentType = contentType === "movie" ? "Movies" : "TV Shows";
+
+  useEffect(() => {
+    (async () => {
+      const res = await getContent({ contentType, category })
+      console.log(res);
+
+      if (res.error) {
+        toast.error(res.message)
+      }
+
+    })()
+    console.log(contentType);
+  }, [contentType, category])
 
   return (
     <div className="text-white px-10 pt-10 ">
@@ -61,14 +70,14 @@ export default function SliderCom({ category }: { category: any }) {
           },
         }}
       >
-        {
+        {/* {
           content.map((item, index) => (
             <SwiperSlide key={index}>
               <MovieCard data={item} />
             </SwiperSlide>
           ))
 
-        }
+        } */}
       </Swiper>
     </div>
   );
