@@ -32,7 +32,7 @@ const MovieCard = ({ item }: MovieCardProps) => {
                         <div className='cursor-pointer group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300'>
                             <PlusIcon className='h-7 w-7 text-white' />
                         </div>
-                        <MovieCardChevronBtn />
+                        <MovieCardChevronBtn item={item} />
                     </div>
                     <p className='text-green-400 font-semibold mt-4'>
                         {item?.original_name}{" "}

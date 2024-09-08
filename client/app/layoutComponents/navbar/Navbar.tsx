@@ -91,23 +91,39 @@ export const Navbar = () => {
                 </div>
 
                 <div className='flex space-x-4 items-center z-50'>
-                    <Link href={"/search"}>
-                        <MagnifyingGlassIcon className='size-6 cursor-pointer' />
-                    </Link>
-                    <div className="relative group">
-                        <Image
-                            src={session?.user?.picture.startsWith('https') ? session.user.picture : `/images${session?.user.picture}`}
-                            width={32}
-                            height={32}
-                            alt='Avatar'
-                            className='  h-8 rounded cursor-pointer'
-                        />
-                        <p className='absolute opacity-0 transform translate-y-2 -left-4 top-10 bg-white p-3 rounded shadow-lg transition duration-300 cursor-pointer group-hover:opacity-100 group-hover:translate-y-0'>
-                            {session?.user.name}
-                        </p>
-                    </div>
+                    {
+                        session && (
+                            <Link href={"/search"}>
+                                <MagnifyingGlassIcon className='size-6 cursor-pointer' />
+                            </Link>
+                        )
+                    }
+                    {
+                        session && (
+                            <div className="relative group">
+                                <Image
+                                    src={session?.user?.picture.startsWith('https') ? session.user.picture : `/images${session?.user.picture}`}
+                                    width={32}
+                                    height={32}
+                                    alt='Avatar'
+                                    className='  h-8 rounded cursor-pointer'
+                                />
+                                <p className='absolute opacity-0 transform translate-y-2 -left-4 top-10 bg-white p-3 rounded shadow-lg transition duration-300 cursor-pointer group-hover:opacity-100 group-hover:translate-y-0'>
+                                    {session?.user.name}
+                                </p>
+                            </div>
+                        )
+                    }
 
-                    <ArrowLeftStartOnRectangleIcon className='size-7 cursor-pointer' onClick={() => signOut()} />
+                    {
+                        session ? (
+                            <ArrowLeftStartOnRectangleIcon className='size-7 cursor-pointer' onClick={() => signOut()} />
+                        ) : (
+                            <Link href={"/auth"}>
+                                Sign In
+                            </Link>
+                        )
+                    }
                     <div className='lg:hidden'>
                         <Bars4Icon className='size-6 cursor-pointer' onClick={toggleMobileMenu} />
                     </div>

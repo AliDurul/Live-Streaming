@@ -23,7 +23,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     <html lang="en" >
       <body className={inter.className} >
         <ToastProvider>
-          <SessionProvider session={session} refetchInterval={60 * 60 * 24 * 1}>
+          <SessionProvider session={session} >
             {children}
           </SessionProvider>
         </ToastProvider>

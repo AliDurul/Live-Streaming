@@ -12,8 +12,8 @@ interface InfoModalProps {
 
 export const InfoModal = () => {
     const [isVisible, setIsVisible] = useState(false)
-    const { movieId, closeModal, isOpen } = useStreamStore()
-
+    const { contentInfo, closeModal, isOpen } = useStreamStore()
+console.log(contentInfo);
     useEffect(() => {
         setIsVisible(!!isOpen)
     }, [isOpen])
@@ -50,7 +50,7 @@ export const InfoModal = () => {
                             <p className='text-white text-2xl md:text-3xl h-full lg:text-4xl font-bold mb-8'>How to train your dragon</p>
 
                             <div className="flex flex-row gap-4 items-center">
-                                <HeaderPlayBtn />
+                                <HeaderPlayBtn id={contentInfo?.id} />
                                 <div className='cursor-pointer group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300'>
                                     <PlusIcon className=' h-7 w-7 text-white' />
                                 </div>
