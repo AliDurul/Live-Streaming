@@ -13,7 +13,7 @@ interface InfoModalProps {
 export const InfoModal = () => {
     const [isVisible, setIsVisible] = useState(false)
     const { contentInfo, closeModal, isOpen } = useStreamStore()
-console.log(contentInfo);
+// console.log(contentInfo);
     useEffect(() => {
         setIsVisible(!!isOpen)
     }, [isOpen])

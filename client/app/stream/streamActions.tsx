@@ -6,6 +6,7 @@ import { Linefont } from "next/font/google";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 type GetContent = { contentType: string, category: string };
+type GetTrailersType = { contentType: string, id: string };
 
 // const axiosInstance = axios.create({
 //     baseURL: API_BASE_URL,
@@ -31,7 +32,7 @@ type GetContent = { contentType: string, category: string };
 //         console.log('line30--> ');
 //         return res.data;
 //     } catch (error: any) {
-//         const res = error.response.data || { error: true, message: 'An error occurred refreshing the page. Please try again later.' };
+//         const res = error.response?.data || { error: true, message: 'An error occurred refreshing the page. Please try again later.' };
 //         return res;
 //     }
 // };
@@ -41,7 +42,7 @@ export const getContent = async ({ contentType, category }: GetContent) => {
         const res = await fetch(`${API_BASE_URL}/${contentType}/${category}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
-            next: { revalidate: 900 }
+            // next: { revalidate: 900 }
         })
         const jsonRes = await res.json()
 
@@ -51,7 +52,59 @@ export const getContent = async ({ contentType, category }: GetContent) => {
 
 
     } catch (error: any) {
-        const res = error.response.data || { error: true, message: 'An error occurred refreshing the page. Please try again later.' };
+        const res = error.response?.data || { error: true, message: 'An error occurred refreshing the page. Please try again later.' };
+        return res;
+    }
+}
+
+export const getTrailers = async ({ contentType, id }: GetTrailersType) => {
+    try {
+        const res = await fetch(`${API_BASE_URL}/${contentType}/${id}/trailers`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        const jsonRes = await res.json()
+
+        console.log('line68-->', jsonRes);
+
+        return jsonRes;
+
+    } catch (error: any) {
+        const res = error.response?.data || { error: true, message: 'An error occurred refreshing the page. Please try again later.' };
+        return res;
+    }
+}
+
+export const getContentDetails = async ({ contentType, id }: GetTrailersType) => {
+    try {
+        const res = await fetch(`${API_BASE_URL}/${contentType}/${id}/details`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        const jsonRes = await res.json()
+
+        console.log('line68-->', jsonRes);
+
+        return jsonRes;
+
+    } catch (error: any) {
+        const res = error.response?.data || { error: true, message: 'An error occurred refreshing the page. Please try again later.' };
+        return res;
+    }
+}
+
+export const getSimilarContent = async ({ contentType, id }: GetTrailersType) => {
+    try {
+        const res = await fetch(`${API_BASE_URL}/${contentType}/${id}/similar`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        const jsonRes = await res.json()
+
+        return jsonRes;
+
+    } catch (error: any) {
+        const res = error.response?.data || { error: true, message: 'An error occurred refreshing the page. Please try again later.' };
         return res;
     }
 }

@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from "react";
-import { Navigation, A11y, Autoplay, Keyboard } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, A11y, Autoplay, Keyboard, Mousewheel} from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
@@ -20,7 +20,7 @@ interface ContentItem {
 export default function SliderCom({ category }: { category: string }) {
 
   const { contentType } = useStreamStore();
-  const [content, setContent] = useState([])
+  const [content, setContent] = useState([]);
 
 
 
@@ -30,13 +30,12 @@ export default function SliderCom({ category }: { category: string }) {
   useEffect(() => {
     (async () => {
       const res = await getContent({ contentType, category })
-      console.log(res);
+      // console.log(res);
 
       if (res?.error) {
         toast.error(res.message)
       } else if (res?.success) {
-        console.log(res?.content);
-
+        // console.log(res?.content);
         setContent(res?.content)
       }
 
@@ -53,10 +52,12 @@ export default function SliderCom({ category }: { category: string }) {
       {
         content.length > 0 && (
           <Swiper
-            modules={[Navigation, A11y, Keyboard]}
+            className="stream_swiper"
+            modules={[Navigation, A11y, Keyboard, Mousewheel]}
             spaceBetween={10}
-            slidesPerView={1}
+            slidesPerView={4}
             keyboard={{ enabled: true }}
+            mousewheel={true}
             navigation
             // onSwiper={(swiper) => console.log(swiper)}
             // onSlideChange={() => console.log('slide change')}
