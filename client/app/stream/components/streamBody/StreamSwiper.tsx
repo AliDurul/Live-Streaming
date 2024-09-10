@@ -6,8 +6,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import useStreamStore from "@/stores/store";
-import MovieCard from "./MovieCard/MovieCard";
-import { getContent } from "../streamActions";
+import MovieCard from "../MovieCard/MovieCard";
+import { getContent } from "../../streamActions";
 import { toast } from "react-toastify";
 
 interface ContentItem {
@@ -17,7 +17,7 @@ interface ContentItem {
   name?: string;
 }
 
-export default function SliderCom({ category }: { category: string }) {
+export default function StreamSwiper({ category }: { category: string }) {
 
   const { contentType } = useStreamStore();
   const [content, setContent] = useState([]);

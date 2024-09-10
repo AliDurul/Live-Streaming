@@ -28,7 +28,7 @@ const MovieCard = ({ item }: MovieCardProps) => {
                 <div className=' z-10 bg-zinc-800 p-2 lg:p-4 absolute w-full transition  shadow-md rounded-b-md '>
                     <MovieCardBtns item={item} />
                     <p className='text-green-400 font-semibold mt-4'>
-                        {item?.original_name}{" "}
+                        {item?.original_name || item?.original_title}{" "}
                         <span className='text-white '>
                             {item?.release_date?.split("-")[0] ||
                                 item?.first_air_date.split("-")[0]}{" "}

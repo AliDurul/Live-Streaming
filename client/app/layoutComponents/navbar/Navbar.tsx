@@ -93,7 +93,7 @@ export const Navbar = () => {
                 <div className='flex space-x-4 items-center z-50'>
                     {
                         session && (
-                            <Link href={"/search"}>
+                            <Link href={"/stream/search"}>
                                 <MagnifyingGlassIcon className='size-6 cursor-pointer' />
                             </Link>
                         )
@@ -108,7 +108,7 @@ export const Navbar = () => {
                                     alt='Avatar'
                                     className='  h-8 rounded cursor-pointer'
                                 />
-                                <p className='absolute opacity-0 transform translate-y-2 -left-4 top-10 bg-white p-3 rounded shadow-lg transition duration-300 cursor-pointer group-hover:opacity-100 group-hover:translate-y-0'>
+                                <p className='absolute opacity-0 w-fit transform translate-y-2 -left-4 top-10 bg-white p-3 rounded shadow-lg transition duration-300 cursor-pointer group-hover:opacity-100 group-hover:translate-y-0'>
                                     {session?.user.name}
                                 </p>
                             </div>

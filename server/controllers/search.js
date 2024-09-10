@@ -34,7 +34,7 @@ export async function searchMovie(req, res) {
     if (response.results.length === 0) {
         return res.status(404).send(null);
     }
-
+    
     await User.findByIdAndUpdate(req.user._id, {
         $push: {
             searchHistory: {
@@ -89,6 +89,9 @@ export async function removeItemFromSearchHistory(req, res) {
             searchHistory: { id: id },
         },
     });
+
+    const user = await User.findById(req.user._id);
+    console.log(user.searchHistory);
 
     res.status(200).json({ success: true, message: "Item removed from search history" });
 

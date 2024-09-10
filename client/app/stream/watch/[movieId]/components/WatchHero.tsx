@@ -69,7 +69,7 @@ export default function WatchHero({ contentId }: { contentId: string }) {
 
     if (loading)
         return (
-            <div className='min-h-screen bg-black p-10'>
+            <div className='min-h-screen bg-black p-20'>
                 <WatchSkeleton />
             </div>
         );

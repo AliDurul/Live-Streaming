@@ -1,41 +1,21 @@
 'use server'
 
-import axios from "axios";
-import { Linefont } from "next/font/google";
+import { auth } from "@/auth";
 
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 type GetContent = { contentType: string, category: string };
 type GetTrailersType = { contentType: string, id: string };
 
-// const axiosInstance = axios.create({
-//     baseURL: API_BASE_URL,
-//     headers: {
-//         'Next-Revalidate': '900' // 15 minutes in seconds
-//     }
-// });
+const authConfig = async () => {
+    const session = await auth();
+    const accessToken = session?.access;
 
-// axiosInstance.interceptors.request.use(config => {
-//     // const token = getAuthToken(); // Assume this function retrieves the token
-//     // if (token) {
-//     //     config.headers['Authorization'] = `Bearer ${token}`;
-//     // }
-//     return config;
-// }, error => {
-//     return Promise.reject(error);
-// });
-
-
-// export const getContent = async ({ contentType, category }: GetContent) => {
-//     try {
-//         const res = await axiosInstance.get(`/${contentType}/${category}`);
-//         console.log('line30--> ');
-//         return res.data;
-//     } catch (error: any) {
-//         const res = error.response?.data || { error: true, message: 'An error occurred refreshing the page. Please try again later.' };
-//         return res;
-//     }
-// };
+    return {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+    };
+};
 
 export const getContent = async ({ contentType, category }: GetContent) => {
     try {
@@ -47,6 +27,8 @@ export const getContent = async ({ contentType, category }: GetContent) => {
         const jsonRes = await res.json()
 
         // console.log('line46-->', jsonRes);
+        if (!res.ok) throw new Error(jsonRes.message || 'An error occurred refreshing the page. Please try again later.');
+
 
         return jsonRes;
 
@@ -65,7 +47,9 @@ export const getTrailers = async ({ contentType, id }: GetTrailersType) => {
         })
         const jsonRes = await res.json()
 
-        console.log('line68-->', jsonRes);
+        // console.log('line68-->', jsonRes);
+        if (!res.ok) throw new Error(jsonRes.message || 'An error occurred refreshing the page. Please try again later.');
+
 
         return jsonRes;
 
@@ -83,7 +67,10 @@ export const getContentDetails = async ({ contentType, id }: GetTrailersType) =>
         })
         const jsonRes = await res.json()
 
-        console.log('line68-->', jsonRes);
+        if (!res.ok) throw new Error(jsonRes.message || 'An error occurred refreshing the page. Please try again later.');
+
+
+        // console.log('line68-->', jsonRes);
 
         return jsonRes;
 
@@ -101,6 +88,9 @@ export const getSimilarContent = async ({ contentType, id }: GetTrailersType) =>
         })
         const jsonRes = await res.json()
 
+        if (!res.ok) throw new Error(jsonRes.message || 'An error occurred refreshing the page. Please try again later.');
+
+
         return jsonRes;
 
     } catch (error: any) {
@@ -109,3 +99,65 @@ export const getSimilarContent = async ({ contentType, id }: GetTrailersType) =>
     }
 }
 
+type SearchProps = { activeTab: string, searchTerm: string };
+
+export const search = async ({ activeTab, searchTerm }: SearchProps) => {
+    const headers = await authConfig();
+
+    try {
+        const res = await fetch(`${API_BASE_URL}/search/${activeTab}/${searchTerm}`, {
+            method: 'GET',
+            headers
+        })
+        const jsonRes = await res.json()
+
+        if (!res.ok) throw new Error(jsonRes.message || 'An error occurred refreshing the page. Please try again later.');
+
+        return jsonRes;
+
+    } catch (error: any) {
+        const res = { error: true, message: error.message || 'An error occurred refreshing the page. Please try again later.' };
+        return res;
+    }
+}
+
+export const getSearchHistory = async () => {
+    const headers = await authConfig();
+
+    try {
+        const res = await fetch(`${API_BASE_URL}/search/history`, {
+            method: 'GET',
+            headers
+        })
+        const jsonRes = await res.json()
+
+        if (!res.ok) throw new Error(jsonRes.message || 'An error occurred refreshing the page. Please try again later.');
+
+        return jsonRes;
+
+    } catch (error: any) {
+        const res = { error: true, message: error.message || 'An error occurred refreshing the page. Please try again later.' };
+        return res;
+    }
+}
+
+export const deleteSearchHistory = async ({ id }: { id: string }) => {
+    const headers = await authConfig();
+
+    try {
+        const res = await fetch(`${API_BASE_URL}/search/history/${id}`, {
+            method: 'DELETE',
+            headers
+        })
+        const jsonRes = await res.json()
+        console.log('line 153', jsonRes);
+
+        if (!res.ok) throw new Error(jsonRes.message || 'An error occurred refreshing the page. Please try again later.');
+
+        return jsonRes;
+
+    } catch (error: any) {
+        const res = { error: true, message: error.message || 'An error occurred refreshing the page. Please try again later.' };
+        return res;
+    }
+}

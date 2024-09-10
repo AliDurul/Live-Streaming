@@ -11,7 +11,7 @@ export default async function (req, res, next) {
     const auth = req.headers?.authorization || null // Token ...tokenKey... // Bearer ...accessToken...
     const tokenKey = auth ? auth.split(' ') : null // ['Token', '...tokenKey...'] // ['Bearer', '...accessToken...']
 
-    if(process.env.NODE_ENV === 'development') return next()
+    // if(process.env.NODE_ENV === 'development') return next()
 
     if (tokenKey) {
 

@@ -54,8 +54,8 @@ export default async function MainPage() {
                             autoPlay={true}
                             muted
                             loop
+                            src='/images/hero-vid.m4v'
                         >
-                            <source src='/images/hero-vid.m4v' type='video/mp4' />
                         </video>
                     </div>
                 </div>
