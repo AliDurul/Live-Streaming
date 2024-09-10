@@ -91,7 +91,6 @@ export async function removeItemFromSearchHistory(req, res) {
     });
 
     const user = await User.findById(req.user._id);
-    console.log(user.searchHistory);
 
     res.status(200).json({ success: true, message: "Item removed from search history" });
 

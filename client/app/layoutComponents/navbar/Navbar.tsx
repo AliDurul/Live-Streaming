@@ -1,11 +1,8 @@
 'use client'
-import React, { use, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import Image from 'next/image';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link';
-import { useCurrentUser } from '@/hooks/useCurrentUser';
-import { SignOutBtn } from './SignOutBtn';
 import useStreamStore from '@/stores/store';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
