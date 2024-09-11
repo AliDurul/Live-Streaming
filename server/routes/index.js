@@ -10,10 +10,10 @@ const router = express.Router();
 
 router.use('/auth', auth)
 
-router.use('/movie', isLogin, movie)
+router.use('/movie', movie)
 
-router.use('/tv', isLogin, tv)
+router.use('/tv', tv)
 
-router.use('/search', isLogin, search)
+router.use('/search', search)
 
 export default router;
