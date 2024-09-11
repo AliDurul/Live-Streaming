@@ -7,6 +7,7 @@ import useStreamStore from '@/stores/store';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import netflixLogo from "@/public/images/netflix-logo.png"
+import logo from "@/public/images/logo.png"
 import { signOut } from "next-auth/react"
 import { ArrowLeftStartOnRectangleIcon, Bars4Icon } from '@heroicons/react/24/solid';
 
@@ -63,7 +64,7 @@ export const Navbar = () => {
             <div className={`max-w-7xl relative mx-auto flex flex-wrap items-center justify-between p-4 h-20`}>
                 <div className='flex items-center gap-10  z-50'>
                     <Link href='/'>
-                        <Image src={netflixLogo} alt='Netflix Logo' className='w-32 sm:w-40' />
+                        <Image src={logo} alt='Netflix Logo' className='w-12' />
                     </Link>
 
                     {/* desktop navbar items */}
@@ -91,7 +92,7 @@ export const Navbar = () => {
                     {
                         session && (
                             <Link href={"/stream/search"}>
-                                <MagnifyingGlassIcon className='size-6 cursor-pointer' />
+                                <MagnifyingGlassIcon className='size-7 cursor-pointer text-white' />
                             </Link>
                         )
                     }
@@ -105,7 +106,7 @@ export const Navbar = () => {
                                     alt='Avatar'
                                     className='  h-8 rounded cursor-pointer'
                                 />
-                                <p className='absolute opacity-0 w-fit transform translate-y-2 -left-4 top-10 bg-white p-3 rounded shadow-lg transition duration-300 cursor-pointer group-hover:opacity-100 group-hover:translate-y-0'>
+                                <p className='absolute opacity-0 min-w-full transform translate-y-2 -left-4 top-10 text-white bg-black p-3 rounded shadow-lg transition duration-300 cursor-pointer group-hover:opacity-100 group-hover:translate-y-0'>
                                     {session?.user.name}
                                 </p>
                             </div>
@@ -114,7 +115,7 @@ export const Navbar = () => {
 
                     {
                         session ? (
-                            <ArrowLeftStartOnRectangleIcon className='size-7 cursor-pointer' onClick={() => signOut()} />
+                            <ArrowLeftStartOnRectangleIcon className='size-8 text-white cursor-pointer' onClick={() => signOut()} />
                         ) : (
                             <Link href={"/auth"}>
                                 Sign In

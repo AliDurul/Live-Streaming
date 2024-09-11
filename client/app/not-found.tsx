@@ -9,7 +9,7 @@ export default function NotFound() {
         >
             <header className='absolute top-0 left-0 p-4 bg-black w-full '>
                 <Link href={"/"}>
-                    <Image width={250} height={100} src='/images/netflix-logo.png' alt='Netflix' className='h-auto' />
+                    <Image width={100} height={50} src='/images/logo.png' alt='Netflix' className='h-auto' />
                 </Link>
             </header>
             <main className='text-center error-page--content z-10'>
@@ -18,7 +18,7 @@ export default function NotFound() {
                     Sorry, we can&apos;t find that page. You&apos;ll find lots to explore on the home page.
                 </p>
                 <Link href={"/"} className='bg-white text-black py-2 px-4 rounded'>
-                    Netflix Home
+                    StreaminLink Home
                 </Link>
             </main>
         </div>

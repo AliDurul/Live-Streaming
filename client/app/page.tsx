@@ -3,6 +3,8 @@ import Link from 'next/link'
 import React from 'react'
 import HomeScreenForm from './(auth)/auth/components/HomeScreenForm'
 import netflixLogo from '../public/images/netflix-logo.png'
+import logo from '../public/images/logo.png'
+import logoText from '../public/images/logo-text.png'
 import tv from '../public/images/tv.png'
 import strangerBg from '../public/images/stranger-things-lg.png'
 import strangerSm from '../public/images/stranger-things-sm.png'
@@ -17,17 +19,17 @@ export default async function MainPage() {
         <div className='hero-bg relative'>
             {/* Navbar */}
             <header className='max-w-6xl mx-auto flex items-center justify-between p-4 py-10'>
-                <Image src={netflixLogo}   className='w-32 md:w-60' alt='Netflix Logo' />
-                <Link href={"/auth"} className='text-white bg-red-600 py-2 px-5 rounded'>
+                <Image src={logoText} className='w-16 md:w-28' alt='Netflix Logo' />
+                <Link href={"/auth"} className='text-white bg-primary hover:bg-primary-light transition-colors py-2 px-5 rounded'>
                     Sign In
                 </Link>
             </header>
 
             {/* hero section */}
             <div className='flex flex-col items-center justify-center text-center py-32 text-white max-w-6xl mx-auto'>
-                <h1 className='text-4xl md:text-6xl font-bold mb-4'>Unlimited movies, TV shows, and more</h1>
-                <p className='text-lg mb-4'>Watch anywhere. Cancel anytime.</p>
-                <p className='mb-4'>Ready to watch? Enter your email to create or restart your membership.</p>
+                <h1 className='text-4xl md:text-6xl font-bold mb-4'>Endless Entertainment at Your Fingertips</h1>
+                <p className='text-xl mb-4'>Stream your favorite movies and series anytime, anywhere. No ads, no hassle—just pure entertainment.</p>
+                <p className='mb-4 text-lg'>Join now to explore! Start your free trial today and dive into a world of excitement.</p>
 
                 <HomeScreenForm />
             </div>
@@ -70,10 +72,10 @@ export default async function MainPage() {
                     {/* left side */}
                     <div className='flex-1 relative'>
                         <div className='relative'>
-                            <Image src={strangerBg} alt='Stranger Things img' className='mt-4' />
+                            <Image src={strangerBg} alt='Stranger Things img' className='mt-4 ' />
 
-                            <div className='flex items-center gap-2 absolute bottom-5 left-1/2 -translate-x-1/2 bg-black w-3/4 lg:w-1/2 h-24 border border-slate-500 rounded-md px-2'>
-                                <Image src={strangerSm} alt='image' className='h-full' />
+                            <div className='overflow-hidden flex items-center gap-2 absolute bottom-5 left-1/2 -translate-x-1/2 bg-black w-3/4 lg:w-1/2 h-24 border border-slate-500 rounded-md px-2'>
+                                <Image src={strangerSm} alt='image' className='mt-10' />
                                 <div className=' flex justify-between items-center w-full'>
                                     <div className='flex flex-col gap-0'>
                                         <span className='text-md lg:text-lg font-bold'>Stranger Things</span>

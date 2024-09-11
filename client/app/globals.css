@@ -15,7 +15,9 @@ html {
 }
 
 .hero-bg {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url("/images/hero.png");
+	background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url("/images/hero.jpg");
+	/* background-repeat: no-repeat; */
+	background-size: contain;
 }
 
 .shimmer {
@@ -89,17 +91,15 @@ html {
 	.swiper-slide img {
 		display: block;
 		width: 100%;
-	  }
+	}
 }
 
 .error-page--content::before {
-	background: radial-gradient(
-		ellipse at center,
-		rgba(0, 0, 0, 0.5) 0,
-		rgba(0, 0, 0, 0.2) 45%,
-		rgba(0, 0, 0, 0.1) 55%,
-		transparent 70%
-	);
+	background: radial-gradient(ellipse at center,
+			rgba(0, 0, 0, 0.5) 0,
+			rgba(0, 0, 0, 0.2) 45%,
+			rgba(0, 0, 0, 0.1) 55%,
+			transparent 70%);
 	bottom: -10vw;
 	content: "";
 	left: 10vw;
