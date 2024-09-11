@@ -1,12 +1,21 @@
 import { auth } from '@/auth'
 import React from 'react'
 import ProfileBox from './components/ProfileBox'
+import { Metadata } from 'next';
+
+
+export async function generateMetadata(): Promise<Metadata> {
+    const session = await auth()
+    const userInfo = session?.user
+    
+    return {
+        title: `Welcome ${userInfo?.name} | StreamLink`,
+    }
+}
+
 
 const ProfilePage = async () => {
     const session = await auth()
-
-
-
 
     return (
         <div className='flex items-center h-full justify-center'>

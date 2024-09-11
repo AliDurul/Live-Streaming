@@ -38,12 +38,12 @@ const StreamHeader = () => {
         <p className='text-white text-xl md:text-3xl h-full w-[50%] lg:text-4xl font-bold drop-shadow-xl'>
           {trendingContent?.title || trendingContent?.name}
         </p>
-        <p className='mt-2 text-lg'>
+        <p className='mt-2 text-lg text-primary'>
           {trendingContent?.release_date?.split("-")[0] ||
             trendingContent?.first_air_date.split("-")[0]}{" "}
           | {trendingContent?.adult ? "18+" : "PG-13"}
         </p>
-        <p className="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[90%] lg:w-[50%] drop-shadow-xl  ">
+        <p className="text-white text-[8px] md:text-lg mt-2 md:mt- w-[90%] lg:w-[50%] drop-shadow-xl  ">
           {trendingContent?.overview.length > 200
             ? trendingContent?.overview.slice(0, 200) + "..."
             : trendingContent?.overview}

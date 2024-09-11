@@ -16,7 +16,7 @@ import kids from '../public/images/kids.png'
 export default async function MainPage() {
 
     return (
-        <div className='hero-bg relative'>
+        <div className="relative md:bg-contain bg-no-repeat bg-hero-gradient  " >
             {/* Navbar */}
             <header className='max-w-6xl mx-auto flex items-center justify-between p-4 py-10'>
                 <Image src={logoText} className='w-16 md:w-28' alt='Netflix Logo' />

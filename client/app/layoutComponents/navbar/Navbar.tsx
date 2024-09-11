@@ -72,7 +72,7 @@ export const Navbar = () => {
                         {
                             buttons.map((btn, i) => (
                                 <button key={i}
-                                    className={` ${pathname === '/stream' && contentType === btn.value ? 'text-red-600 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold cursor-pointer hover:text-red-700 transition`}
+                                    className={` ${pathname === '/stream' && contentType === btn.value ? 'text-primary-dark font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold cursor-pointer hover:text-primary-light transition`}
                                     onClick={() => { setContentType(btn.value); router.push('/stream') }}>
                                     {btn.label}
                                 </button>
@@ -80,7 +80,7 @@ export const Navbar = () => {
                         }
                         {
                             pages.map((page, i) => (
-                                <Link href={page.href} key={i} className={` ${pathname === page.href ? 'text-red-600 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold cursor-pointer hover:text-red-700 transition`} >
+                                <Link href={page.href} key={i} className={` ${pathname === page.href ? 'text-primary-dark font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold cursor-pointer hover:text-primary-light transition`} >
                                     {page.label}
                                 </Link>
                             ))
@@ -122,8 +122,9 @@ export const Navbar = () => {
                             </Link>
                         )
                     }
+                    {/* MENU BUTTON */}
                     <div className='lg:hidden'>
-                        <Bars4Icon className='size-6 cursor-pointer' onClick={toggleMobileMenu} />
+                        <Bars4Icon className='size-8 text-white cursor-pointer' onClick={toggleMobileMenu} />
                     </div>
                 </div>
 
@@ -132,14 +133,14 @@ export const Navbar = () => {
                     <div className='absolute lg:hidden w-1/3 top-16 right-4  z-50 bg-black border rounded border-gray-800 '>
                         {
                             buttons.map((btn, i) => (
-                                <button key={i} className={` ${contentType === btn.value ? 'text-red-600 font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold cursor-pointer hover:text-red-700 transition`} onClick={() => setContentType(btn.value)}>
+                                <button key={i} className={` ${contentType === btn.value ? 'text-primary-dark font-bold' : 'text-white'} px-3 py-2 text-sm font-semibold cursor-pointer hover:text-primary-light transition`} onClick={() => setContentType(btn.value)}>
                                     {btn.label}
                                 </button>
                             ))
                         }
                         {
                             pages.map((page, i) => (
-                                <Link key={i} href={page.href} className={`block hover:underline underline-offset-4 p-2 ${pathname === page.href && 'text-red-600 underline font-bold'}`} onClick={toggleMobileMenu}>
+                                <Link key={i} href={page.href} className={`block hover:underline underline-offset-4 p-2 ${pathname === page.href ? 'text-primary-dark underline font-bold': 'text-white' }`} onClick={toggleMobileMenu}>
                                     {page.label}
                                 </Link>
                             ))

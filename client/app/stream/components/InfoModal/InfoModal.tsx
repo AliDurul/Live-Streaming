@@ -76,7 +76,7 @@ export const InfoModal = () => {
                             <p className="text-white font-semibold text-lg">
                                 {contentInfo?.release_date || contentInfo?.first_air_date}
                             </p>
-                            <p className="text-green-400 text-lg ">{trailer?.type}</p>
+                            <p className="text-primary-light text-lg ">{trailer?.type}</p>
                             <p className="text-white text-lg">
                                 {contentInfo?.adult ? "18+" : "PG-13"}
                             </p>

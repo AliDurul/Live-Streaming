@@ -13,15 +13,13 @@ const config: Config = {
         primary: {
           DEFAULT: '#10BED4',
           light: '#00D0CB',
-          dark:'#0A8D93'
+          dark: '#0A8D93'
         },
 
       },
 
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'hero-gradient': "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('/images/hero.jpg')",
       },
 
     },

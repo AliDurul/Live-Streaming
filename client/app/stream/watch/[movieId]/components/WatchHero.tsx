@@ -9,7 +9,6 @@ import ReactPlayer from 'react-player'
 import Image from 'next/image'
 import { ORIGINAL_IMG_BASE_URL } from '@/utils/constants'
 import { formatReleaseDate } from '@/utils/dateFormatter'
-import Link from 'next/link'
 import WatchSimilarSwiper from './WatchSimilarSwiper'
 
 export default function WatchHero({ contentId }: { contentId: string }) {
@@ -83,26 +82,22 @@ export default function WatchHero({ contentId }: { contentId: string }) {
     console.log(contentId);
     return (
         <div className='py-14 text-white'>
-            <WatchBackBtn content={content} />
-
+            {/* <WatchBackBtn content={content} /> */}
+        <div className='pt-10' />
             {trailers.length > 0 && (
-                <div className=' flex  justify-between items-center mb-4 px-32'>
+                <div className=' flex  justify-between items-center mb-4 px-6 md:px-32'>
                     <button
-                        className={`
-							bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded ${currentTrailerIdx === 0 ? "opacity-50 cursor-not-allowed " : ""
-                            }}
-							`}
+                        className={`bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded ${currentTrailerIdx === 0 ? "opacity-50 cursor-not-allowed " : ""}`}
                         disabled={currentTrailerIdx === 0}
                         onClick={handlePrev}
                     >
                         <ChevronLeftIcon className='size-7' />
                     </button>
-
+                    <p className='text-white text-xl md:text-3xl font-bold'>
+                        <span className='font-light'>Watching : </span> {content?.title || content?.name}
+                    </p>
                     <button
-                        className={`
-							bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded ${currentTrailerIdx === trailers.length - 1 ? "opacity-50 cursor-not-allowed " : ""
-                            }}
-							`}
+                        className={`bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded ${currentTrailerIdx === trailers.length - 1 ? "opacity-50 cursor-not-allowed " : ""}`}
                         disabled={currentTrailerIdx === trailers.length - 1}
                         onClick={handleNext}
                     >
@@ -131,7 +126,7 @@ export default function WatchHero({ contentId }: { contentId: string }) {
             </div>
 
             <div className=' pt-16 flex flex-col md:flex-row items-center justify-between gap-20 
-				max-w-6xl mx-auto'>
+				max-w-6xl mx-auto px-6'>
                 <div className='mb-4 md:mb-0 text-white'>
                     <h2 className='text-5xl font-bold text-balance'>{content?.title || content?.name}</h2>
 
@@ -153,7 +148,7 @@ export default function WatchHero({ contentId }: { contentId: string }) {
 
             {similarContent.length > 0 && (
                 <div className='text-white mt-12 p-5  max-w-full mx-auto relative'>
-                    <h3 className='text-3xl font-bold mb-4'>Similar Movies/Tv Show</h3>
+                    <h3 className='text-2xl md:text-3xl font-bold mb-4'>Similar Movies/Tv Show</h3>
                     <WatchSimilarSwiper content={similarContent} />
                 </div>
             )}

@@ -4,6 +4,12 @@ import SignInForm from './components/SignInForm'
 import Link from 'next/link'
 import netflixLogo from '../../../public/images/netflix-logo.png'
 import logoText from '../../../public/images/logo-text.png'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: "Authenticating | StreamLink",
+    description: "Created By Ali Durul",
+};
 
 export default function AuthPage() {
     return (
