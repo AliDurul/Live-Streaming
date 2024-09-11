@@ -25,7 +25,7 @@ app.use(authentication);
 app.use(cors());
 
 /* ROUTES */
-app.get('/api/v1', (req, res) => {
+app.get('', (req, res) => {
 
     res.status(200).send({
         error: false,
