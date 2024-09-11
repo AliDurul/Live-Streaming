@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: MovieIdPageProps): Promise<Me
 }
 
 
-export const MovieIdPage = ({ params }: MovieIdPageProps) => {
+const MovieIdPage: React.FC<MovieIdPageProps> = ({ params }) => {
 
   const { movieId } = params;
 
