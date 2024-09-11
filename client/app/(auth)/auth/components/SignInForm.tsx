@@ -14,7 +14,7 @@ const SignInForm = () => {
   const emailAddress = searchParams.get('email')
 
   const [credentials, setCredentials] = useState({
-    email: '',
+    email: emailAddress || '',
     password: '',
     name: ''
   })

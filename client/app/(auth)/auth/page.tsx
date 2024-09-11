@@ -17,7 +17,7 @@ export default function AuthPage() {
             <div className="bg-black w-full h-full lg:bg-opacity-60">
                 <nav className='px-12 py-5'>
                     <Link href={'/'}>
-                        <Image src={logoText} width={150} alt='logo' />
+                        <Image src={logoText} width={100} alt='logo' />
                     </Link>
                 </nav>
                 <div className="flex justify-center pt-5">

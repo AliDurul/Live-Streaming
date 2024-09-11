@@ -14,7 +14,7 @@ import { ArrowLeftStartOnRectangleIcon, Bars4Icon } from '@heroicons/react/24/so
 
 
 const pages = [
-    { label: 'Search History', href: 'search-history' },
+    { label: 'Search History', href: '/stream/search-history' },
     { label: 'Live', href: '/stream/live' },
 
 ]

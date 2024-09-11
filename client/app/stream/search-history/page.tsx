@@ -33,6 +33,7 @@ export default function SearchHistoryPage() {
           console.log(res);
           setSearchHistory([])
         } else if (res?.success) {
+          console.log(res);
           setSearchHistory(res?.content)
         }
       }
@@ -55,7 +56,7 @@ export default function SearchHistoryPage() {
 
   if (searchHistory?.length === 0) {
     return (
-      <div className='max-w-6xl mx-auto px-4 py-20'>
+      <div className='max-w-6xl mx-auto px-4 py-20 text-white'>
         <h1 className='text-3xl font-bold mb-8'>Search History</h1>
         <div className='flex justify-center items-center h-96'>
           <p className='text-xl'>No search history found</p>
@@ -65,7 +66,7 @@ export default function SearchHistoryPage() {
   }
 
   return (
-    <div className='max-w-6xl mx-auto px-4 py-20 min-h-screen'>
+    <div className='max-w-6xl mx-auto px-4 py-20 min-h-screen text-white'>
       <h1 className='text-3xl font-bold mb-8'>Search History</h1>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4'>
         {searchHistory?.map((entry: any) => (

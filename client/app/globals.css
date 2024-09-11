@@ -100,7 +100,7 @@ html {
 			rgba(0, 0, 0, 0.2) 45%,
 			rgba(0, 0, 0, 0.1) 55%,
 			transparent 70%);
-	bottom: -10vw;
+	/* bottom: -10vw; */
 	content: "";
 	left: 10vw;
 	position: absolute;
