@@ -12,7 +12,7 @@ export default function HomeScreenForm() {
         router.push("/auth?email=" + email);
     };
     return (
-        <form className='flex flex-col md:flex-row gap-4 w-1/2' onSubmit={handleFormSubmit} >
+        <form className='flex flex-col md:flex-row gap-4 w-2/3  md:w-1/2' onSubmit={handleFormSubmit} >
             <input
                 type='email'
                 placeholder='Email address'

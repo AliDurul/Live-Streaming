@@ -13,7 +13,7 @@ const StreamHeader = () => {
   const [imgLoading, setImgLoading] = useState(true);
 
   return (
-    <div className='relative h-[80vh] bg-black/45'>
+    <div className='relative h-[60vh] md:h-[80vh] bg-black/45'>
       <div className='bg-gradient-to-b from-black via-transparent to-transparent absolute w-full h-full top-0 left-0 -z-10' />
 
       {/* <StreamVideo /> */}
@@ -35,7 +35,7 @@ const StreamHeader = () => {
       />
 
       <div className="absolute top-[30%] md:top-[40%] ml-4 md:ml-16">
-        <p className='text-white text-xl md:text-3xl h-full w-[50%] lg:text-4xl font-bold drop-shadow-xl'>
+        <p className='text-white text-2xl md:text-3xl h-full w-[50%] lg:text-4xl font-bold drop-shadow-xl'>
           {trendingContent?.title || trendingContent?.name}
         </p>
         <p className='mt-2 text-lg text-primary'>
@@ -43,7 +43,7 @@ const StreamHeader = () => {
             trendingContent?.first_air_date.split("-")[0]}{" "}
           | {trendingContent?.adult ? "18+" : "PG-13"}
         </p>
-        <p className="text-white text-[8px] md:text-lg mt-2 md:mt- w-[90%] lg:w-[50%] drop-shadow-xl  ">
+        <p className="text-white text-sm md:text-lg mt-2 md:mt- w-[90%] lg:w-[50%] drop-shadow-xl  ">
           {trendingContent?.overview.length > 200
             ? trendingContent?.overview.slice(0, 200) + "..."
             : trendingContent?.overview}

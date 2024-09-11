@@ -55,7 +55,7 @@ export default function StreamSwiper({ category }: { category: string }) {
             className="stream_swiper"
             modules={[Navigation, A11y, Keyboard, Mousewheel]}
             spaceBetween={10}
-            slidesPerView={4}
+            slidesPerView={1}
             keyboard={{ enabled: true }}
             mousewheel={true}
             navigation
@@ -67,7 +67,7 @@ export default function StreamSwiper({ category }: { category: string }) {
                 spaceBetween: 20,
               },
               768: {
-                slidesPerView: 2,
+                slidesPerView: 3,
                 spaceBetween: 30,
               },
               1024: {

@@ -19,18 +19,17 @@ export default async function MainPage() {
         <div className="relative md:bg-contain bg-no-repeat bg-hero-gradient  " >
             {/* Navbar */}
             <header className='max-w-6xl mx-auto flex items-center justify-between p-4 py-10'>
-                <Image src={logoText} className='w-16 md:w-28' alt='Netflix Logo' />
-                <Link href={"/auth"} className='text-white bg-primary hover:bg-primary-light transition-colors py-2 px-5 rounded'>
+                <Image src={logoText} className='w-20 md:w-28' alt='Netflix Logo' />
+                <Link href={"/auth"} className='text-white bg-primary hover:bg-primary-light transition-colors py-1 px-3 md:py-2 md:px-5 rounded'>
                     Sign In
                 </Link>
             </header>
 
             {/* hero section */}
-            <div className='flex flex-col items-center justify-center text-center py-32 text-white max-w-6xl mx-auto'>
-                <h1 className='text-4xl md:text-6xl font-bold mb-4'>Endless Entertainment at Your Fingertips</h1>
-                <p className='text-xl mb-4'>Stream your favorite movies and series anytime, anywhere. No ads, no hassle—just pure entertainment.</p>
-                <p className='mb-4 text-lg'>Join now to explore! Start your free trial today and dive into a world of excitement.</p>
-
+            <div className='flex flex-col items-center justify-center text-center py-10 md:py-32 text-white max-w-6xl mx-auto'>
+                <h1 className='text-2xl md:text-6xl font-bold mb-4'>Endless Entertainment at Your Fingertips</h1>
+                <p className='text-base md:text-xl mb-4'>Stream your favorite movies and series anytime, anywhere. No ads, no hassle—just pure entertainment.</p>
+                <p className='mb-4 text-base md:text-lg'>Join now to explore! Start your free trial today and dive into a world of excitement.</p>
                 <HomeScreenForm />
             </div>
 
@@ -42,8 +41,8 @@ export default async function MainPage() {
                 <div className='flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col px-4 md:px-2'>
                     {/* left side */}
                     <div className='flex-1 text-center md:text-left'>
-                        <h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Enjoy on your TV</h2>
-                        <p className='text-lg md:text-xl'>
+                        <h2 className='text-3xl md:text-5xl font-extrabold mb-4'>Enjoy on your TV</h2>
+                        <p className='text-base md:text-xl'>
                             Watch on Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.
                         </p>
                     </div>
@@ -90,10 +89,10 @@ export default async function MainPage() {
                     {/* right side */}
 
                     <div className='flex-1 md:text-left text-center'>
-                        <h2 className='text-4xl md:text-5xl font-extrabold mb-4 text-balance'>
+                        <h2 className='text-3xl md:text-5xl font-extrabold mb-4 text-balance'>
                             Download your shows to watch offline
                         </h2>
-                        <p className='text-lg md:text-xl'>
+                        <p className='text-base md:text-xl'>
                             Save your favorites easily and always have something to watch.
                         </p>
                     </div>
@@ -109,8 +108,8 @@ export default async function MainPage() {
                 <div className='flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col px-4 md:px-2'>
                     {/* left side */}
                     <div className='flex-1 text-center md:text-left'>
-                        <h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Watch everywhere</h2>
-                        <p className='text-lg md:text-xl'>
+                        <h2 className='text-3xl md:text-5xl font-extrabold mb-4'>Watch everywhere</h2>
+                        <p className='text-base md:text-xl'>
                             Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.
                         </p>
                     </div>
@@ -143,8 +142,8 @@ export default async function MainPage() {
                     </div>
                     {/* right */}
                     <div className='flex-1 text-center md:text-left'>
-                        <h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Create profiles for kids</h2>
-                        <p className='text-lg md:text-xl'>
+                        <h2 className='text-3xl md:text-5xl font-extrabold mb-4'>Create profiles for kids</h2>
+                        <p className='text-base md:text-xl'>
                             Send kids on adventures with their favorite characters in a space made just for them—free
                             with your membership.
                         </p>

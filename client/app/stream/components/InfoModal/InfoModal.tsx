@@ -59,7 +59,7 @@ export const InfoModal = () => {
                         </div>
 
                         <div className="absolute bottom-[10%] left-10">
-                            <p className='text-white text-2xl md:text-3xl h-full lg:text-4xl font-bold mb-8'>
+                            <p className='text-white  text-xl md:text-3xl h-full lg:text-4xl font-bold mb-8'>
                                 {contentInfo?.original_name || contentInfo?.original_title}{" "}
                             </p>
 
@@ -71,19 +71,19 @@ export const InfoModal = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="px-12 py-5 flex flex-col gap-5">
-                        <div className='flex  justify-between'>
-                            <p className="text-white font-semibold text-lg">
+                    <div className="px-6 md:px-12 py-5 flex flex-col gap-5">
+                        <div className='flex  justify-between text-base md:text-lg'>
+                            <p className="text-white font-semibold ">
                                 {contentInfo?.release_date || contentInfo?.first_air_date}
                             </p>
-                            <p className="text-primary-light text-lg ">{trailer?.type}</p>
-                            <p className="text-white text-lg">
+                            <p className="text-primary-light  ">{trailer?.type}</p>
+                            <p className="text-white ">
                                 {contentInfo?.adult ? "18+" : "PG-13"}
                             </p>
 
                         </div>
                         <div className=''>
-                            <p className="text-white text-lg">
+                            <p className="text-white text-sm  md:text-lg">
                                 {contentInfo?.overview.length > 150
                                     ? contentInfo?.overview.slice(0, 150) + "..."
                                     : contentInfo?.overview}

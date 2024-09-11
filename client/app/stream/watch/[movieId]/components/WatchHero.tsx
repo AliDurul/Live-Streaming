@@ -68,7 +68,7 @@ export default function WatchHero({ contentId }: { contentId: string }) {
 
     if (loading)
         return (
-            <div className='min-h-screen bg-black p-20'>
+            <div className='min-h-screen bg-black p-5 md:p-20'>
                 <WatchSkeleton />
             </div>
         );
@@ -83,21 +83,23 @@ export default function WatchHero({ contentId }: { contentId: string }) {
     return (
         <div className='py-14 text-white'>
             {/* <WatchBackBtn content={content} /> */}
-        <div className='pt-10' />
+            <div className='pt-20' />
             {trailers.length > 0 && (
-                <div className=' flex  justify-between items-center mb-4 px-6 md:px-32'>
+                <div className=' flex  justify-around items-center mb-4 px-6 md:px-32'>
                     <button
-                        className={`bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded ${currentTrailerIdx === 0 ? "opacity-50 cursor-not-allowed " : ""}`}
+                        className={`bg-gray-500/70 hover:bg-gray-500 text-white py-1 md:py-2 px-2 md:px-4 rounded ${currentTrailerIdx === 0 ? "opacity-50 cursor-not-allowed " : ""}`}
                         disabled={currentTrailerIdx === 0}
                         onClick={handlePrev}
                     >
                         <ChevronLeftIcon className='size-7' />
                     </button>
-                    <p className='text-white text-xl md:text-3xl font-bold'>
-                        <span className='font-light'>Watching : </span> {content?.title || content?.name}
-                    </p>
+
+                    <button className=' text-white text-sm md:text-3xl font-bold'>
+                        {content?.title || content?.name} Trailer {currentTrailerIdx + 1}
+                    </button>
+
                     <button
-                        className={`bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded ${currentTrailerIdx === trailers.length - 1 ? "opacity-50 cursor-not-allowed " : ""}`}
+                        className={`bg-gray-500/70 hover:bg-gray-500 text-white py-1 md:py-2 px-2 md:px-4 rounded ${currentTrailerIdx === trailers.length - 1 ? "opacity-50 cursor-not-allowed " : ""}`}
                         disabled={currentTrailerIdx === trailers.length - 1}
                         onClick={handleNext}
                     >
@@ -148,7 +150,7 @@ export default function WatchHero({ contentId }: { contentId: string }) {
 
             {similarContent.length > 0 && (
                 <div className='text-white mt-12 p-5  max-w-full mx-auto relative'>
-                    <h3 className='text-2xl md:text-3xl font-bold mb-4'>Similar Movies/Tv Show</h3>
+                    <h3 className='text-2xl md:text-3xl font-bold mb-4 md:pl-10'>Similar Movies/Tv Show</h3>
                     <WatchSimilarSwiper content={similarContent} />
                 </div>
             )}
