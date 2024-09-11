@@ -3,8 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
-// import ToastProvider from "./layoutComponents/ToastProvider";
-import Toastify from "./layoutComponents/Toastify";
+import { Analytics } from "@vercel/analytics/react"
 import dynamic from "next/dynamic";
 const ToastProvider = dynamic(() => import("./layoutComponents/ToastProvider"), { ssr: false });
 
@@ -25,6 +24,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <ToastProvider>
           <SessionProvider session={session} >
             {children}
+            <Analytics />
           </SessionProvider>
         </ToastProvider>
       </body>
