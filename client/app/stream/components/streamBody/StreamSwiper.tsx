@@ -43,7 +43,7 @@ export default function StreamSwiper({ category }: { category: string }) {
   }, [contentType, category])
 
   return (
-    <div className="text-white px-10 pt-12 ">
+    <div className="text-white px-10 pt-16 ">
 
       <h2 className='mb-4 text-2xl font-bold'>
         {formattedCategoryName} {formattedContentType}
@@ -53,11 +53,11 @@ export default function StreamSwiper({ category }: { category: string }) {
         content.length > 0 && (
           <Swiper
             className="stream_swiper"
-            modules={[Navigation, A11y, Keyboard, Mousewheel]}
+            modules={[Navigation, A11y, Keyboard]}
             spaceBetween={10}
             slidesPerView={1}
             keyboard={{ enabled: true }}
-            mousewheel={true}
+            // mousewheel={true}
             navigation
             // onSwiper={(swiper) => console.log(swiper)}
             // onSlideChange={() => console.log('slide change')}

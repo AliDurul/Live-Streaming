@@ -37,7 +37,7 @@ html {
 }
 
 .stream_swiper {
-	overflow: visible !important;
+	/* overflow: visible !important; */
 
 	.swiper-button-prev,
 	.swiper-button-next {
@@ -107,4 +107,10 @@ html {
 	right: 10vw;
 	top: -10vw;
 	z-index: -1;
+}
+
+@media (max-width: 768px) {
+	.stream_swiper {
+		overflow: hidden !important;
+	}
 }
