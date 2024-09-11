@@ -63,7 +63,7 @@ export const Navbar = () => {
         <header className={`fixed w-full z-40 transition duration-75 ${showbg ? 'bg-zinc-900 bg-opacity-80 shadow-md backdrop-blur-lg' : ''}`}>
             <div className={`max-w-7xl relative mx-auto flex flex-wrap items-center justify-between p-4 h-20`}>
                 <div className='flex items-center gap-10  z-50'>
-                    <Link href='/'>
+                    <Link href='/stream'>
                         <Image src={logo} alt='Netflix Logo' className='w-12' />
                     </Link>
 
