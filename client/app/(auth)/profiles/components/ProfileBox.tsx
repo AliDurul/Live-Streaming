@@ -8,7 +8,7 @@ import React from 'react'
 const ProfileBox = ({ userInfo }: any) => {
     const router = useRouter()
     return (
-        <div className="group flex-row w-44 mx-auto cursor-pointer" onClick={() => { router.push('/stream') }}>
+        <div className="group flex-row w-44 mx-auto cursor-pointer" onClick={() => { router.replace('/stream') }}>
             <div className="w-44 h-44 rounded-md flex items-center border-2 border-transparent group-hover:border-white overflow-hidden">
                 <Image src='/images/avatar1.png' alt='profile' width={176} height={176} />
             </div>
