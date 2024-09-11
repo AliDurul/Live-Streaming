@@ -44,4 +44,4 @@ app.use((req, res, next) => {
 /* ERROR HANDLER */
 app.use(errorHandler);
 
-app.listen(PORT, HOST, () => console.log(`-- port runs at: http://${HOST}:${PORT} --`));
+app.listen(PORT,  () => console.log(`-- port runs at: http://${HOST}:${PORT} --`));
