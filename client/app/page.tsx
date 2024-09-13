@@ -11,6 +11,7 @@ import strangerSm from '../public/images/stranger-things-sm.png'
 import dowloadIcon from '../public/images/download-icon.gif'
 import devicePile from '../public/images/device-pile.png'
 import kids from '../public/images/kids.png'
+import logoNew from '../public/images/logoNew.png'
 
 
 export default async function MainPage() {
@@ -19,8 +20,8 @@ export default async function MainPage() {
         <div className="relative md:bg-contain bg-no-repeat bg-hero-gradient  " >
             {/* Navbar */}
             <header className='max-w-6xl mx-auto flex items-center justify-between p-4 py-10'>
-                <Image src={logoText} className='w-20 md:w-28' alt='Netflix Logo' />
-                <Link href={"/auth"} className='text-white bg-primary hover:bg-primary-light transition-colors py-1 px-3 md:py-2 md:px-5 rounded'>
+                <Image src={logoNew} className='w-20 md:w-32' alt='Netflix Logo' />
+                <Link href={"/auth"} className='text-white bg-[#5ffe2fb4] hover:bg-[#5ffe2fd8] transition-colors py-1 px-3 md:py-2 md:px-5 rounded'>
                     Sign In
                 </Link>
             </header>

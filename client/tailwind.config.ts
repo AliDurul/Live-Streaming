@@ -11,13 +11,12 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#10BED4',
-          light: '#00D0CB',
-          dark: '#0A8D93'
+          DEFAULT: '#5ffe2fb4',
+          light: '#5ffe2fd8',
+          dark: '#00d0a8'
         },
 
       },
-
       backgroundImage: {
         'hero-gradient': "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('/images/hero.jpg')",
       },

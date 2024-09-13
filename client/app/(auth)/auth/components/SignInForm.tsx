@@ -68,8 +68,8 @@ const SignInForm = () => {
         </h2>
         <p className="mt-2 text-sm leading-6 text-white">
           {variant === 'Login' ? 'New to us?' : 'Already a member?'}{' '}
-          <button type='button' onClick={toggleVariant} className="font-semibold text-primary-dark hover:text-primary-light ">
-            {variant === 'Login' ? 'Start a 7 day free trial' : 'Login to your account'}
+          <button type='button' onClick={toggleVariant} className="font-semibold text-[#00d0a8] hover:text-primary-light ">
+            {variant === 'Login' ? 'Create new account' : 'Login to your account'}
           </button>
         </p>
       </div>
